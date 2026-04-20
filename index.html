@@ -3,228 +3,431 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kindred — Weekly Report</title>
+<title>Kindred — Weekly Report · คุณแม่ สมศรี</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+Thai:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
-
   :root {
-    --brand: #4F7CFF;
-    --brand-light: #EEF2FF;
-    --green: #22C55E; --green-light: #F0FDF4;
-    --yellow: #F59E0B; --yellow-light: #FFFBEB;
-    --red: #EF4444; --red-light: #FEF2F2;
-    --purple: #8B5CF6; --purple-light: #F5F3FF;
-    --teal: #14B8A6; --teal-light: #F0FDFA;
-    --gray-50: #F9FAFB; --gray-100: #F3F4F6;
-    --gray-200: #E5E7EB; --gray-300: #D1D5DB;
-    --gray-400: #9CA3AF; --gray-500: #6B7280;
-    --gray-600: #4B5563; --gray-800: #1F2937;
-    --radius: 14px;
-    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.07);
+    --green:      #52A573;
+    --green-mid:  #74BC90;
+    --green-lt:   #C2E0CC;
+    --green-bg:   #EDF7F1;
+    --green-deep: #2F7A50;
+ 
+    --amber:      #E8895A;
+    --amber-lt:   #F7C9A8;
+    --amber-bg:   #FEF3EC;
+    --amber-deep: #C96B38;
+ 
+    --cream:      #F8F6F1;
+    --white:      #FFFFFF;
+    --charcoal:   #1E1E1E;
+    --body:       #3D3D3D;
+    --mid:        #6B6B6B;
+    --light:      #A0A098;
+    --border:     rgba(82,165,115,0.15);
+    --border-neu: #EBEBEB;
+ 
+    --mint:       #68C49A;
+    --mint-bg:    #E6F7EE;
+    --terra:      #C9624A;
+    --terra-bg:   #FCEEE9;
+ 
+    --font-head:  'Prompt', sans-serif;
+    --font-body:  'Prompt', sans-serif;
+    --font-quote: 'Noto Serif Thai', serif;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Sarabun', sans-serif; background: #EEF2F9; color: var(--gray-800); font-size: 15px; line-height: 1.6; }
-
-  /* ===== BANNER ===== */
+ 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--body);
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+ 
+  /* ── BANNER ── */
   .banner {
-    background: linear-gradient(135deg, #2D4DB3 0%, #4F7CFF 55%, #7C9FFF 100%);
-    color: white; padding: 22px 20px 18px;
+    background: var(--green);
+    position: relative;
+    overflow: hidden;
+    padding: 32px 24px 28px;
   }
-  .banner-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .banner-top .app-name { font-size: 13px; font-weight: 700; opacity: .85; letter-spacing: .5px; }
-  .banner-top .week-pill {
-    margin-left: auto; background: rgba(255,255,255,.2);
-    border-radius: 20px; padding: 3px 12px; font-size: 12px;
+  .banner::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    pointer-events: none;
   }
+  .banner::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(232,137,90,0.22);
+    pointer-events: none;
+  }
+  .banner-top {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 18px; position: relative; z-index: 2;
+  }
+  .banner-logo {
+    font-family: var(--font-head);
+    font-size: 14px; font-weight: 600;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: -0.3px;
+  }
+  .week-pill {
+    margin-left: auto;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    padding: 4px 14px;
+    font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,0.8);
+    letter-spacing: 0.3px;
+  }
+ 
   .patient-card {
-    background: rgba(255,255,255,.15); border-radius: 12px;
-    padding: 13px 16px; display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: flex; align-items: center; gap: 16px;
     backdrop-filter: blur(8px);
+    position: relative; z-index: 2;
   }
-  .avatar { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,.25); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
-  .pinfo .name { font-size: 17px; font-weight: 700; }
-  .pinfo .meta { font-size: 12px; opacity: .75; margin-top: 2px; }
-  .score-bubble { margin-left: auto; text-align: center; }
-  .score-bubble .num { font-size: 34px; font-weight: 800; line-height: 1; }
-  .score-bubble .lbl { font-size: 10px; opacity: .75; margin-top: 1px; }
-
-  /* ===== LAYOUT ===== */
-  .main { padding: 16px 14px 40px; max-width: 860px; margin: 0 auto; }
-  .sec-title { font-size: 11.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gray-400); margin: 22px 0 10px; }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
-  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
-  .grid4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 9px; }
-
-  /* ===== CARD ===== */
-  .card { background: white; border-radius: var(--radius); box-shadow: var(--shadow); padding: 15px 16px; }
-  .card-head { display: flex; align-items: center; gap: 9px; margin-bottom: 11px; }
-  .card-head .ico { width: 30px; height: 30px; border-radius: 8px; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
-  .card-head h3 { font-size: 14px; font-weight: 700; flex: 1; }
-
-  /* ===== SOURCE BADGE ===== */
-  .src { display: inline-flex; align-items: center; gap: 3px; font-size: 10.5px; font-weight: 600; padding: 2px 7px; border-radius: 20px; }
-  .src-call { background: #ECFDF5; color: #065F46; }
-  .src-device { background: #EFF6FF; color: #1E40AF; }
-  .src-partial { background: #FFFBEB; color: #92400E; }
-  .src-none { background: var(--gray-100); color: var(--gray-500); }
-
-  /* ===== CHIPS ===== */
-  .chip { display: inline-flex; align-items:center; gap:4px; padding: 3px 9px; border-radius:20px; font-size:12px; font-weight:600; }
-  .chip-green { background:var(--green-light); color:#166534; }
-  .chip-yellow { background:var(--yellow-light); color:#92400E; }
-  .chip-red { background:var(--red-light); color:#991B1B; }
-  .chip-blue { background:var(--brand-light); color:#1E40AF; }
-  .chip-gray { background:var(--gray-100); color:var(--gray-500); }
-
-  /* ===== SUMMARY BOX ===== */
+  .avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.22);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; flex-shrink: 0;
+  }
+  .pinfo .name {
+    font-family: var(--font-head);
+    font-size: 18px; font-weight: 600;
+    color: white; letter-spacing: -0.3px;
+  }
+  .pinfo .meta { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+  .pinfo .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+  .ptag {
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 20px;
+    padding: 2px 10px; font-size: 11px; font-weight: 500;
+    color: rgba(255,255,255,0.85);
+  }
+  .score-bubble { margin-left: auto; text-align: center; flex-shrink: 0; }
+  .score-bubble .num {
+    font-family: var(--font-head);
+    font-size: 38px; font-weight: 700;
+    color: white; line-height: 1; letter-spacing: -1px;
+  }
+  .score-bubble .lbl { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+ 
+  /* ── LAYOUT ── */
+  .main { padding: 20px 18px 48px; max-width: 900px; margin: 0 auto; }
+ 
+  .sec-label {
+    display: flex; align-items: center; gap: 8px;
+    margin: 28px 0 12px;
+  }
+  .sec-label .s-chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--green-bg); color: var(--green-deep);
+    border-radius: 30px; padding: 4px 14px;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .sec-label .s-chip.amber { background: var(--amber-bg); color: var(--amber-deep); }
+  .sec-label .s-chip.terra { background: var(--terra-bg); color: var(--terra); }
+  .sec-label .s-chip.neutral { background: white; color: var(--mid); border: 1px solid var(--border-neu); }
+ 
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+ 
+  /* ── CARD ── */
+  .card {
+    background: white;
+    border-radius: 18px;
+    border: 1px solid var(--border-neu);
+    padding: 20px 22px;
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: 0 4px 20px rgba(82,165,115,0.1); }
+  .card-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .card-ico {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; flex-shrink: 0;
+  }
+  .card-head h3 {
+    font-family: var(--font-head);
+    font-size: 15px; font-weight: 600;
+    color: var(--charcoal); flex: 1;
+  }
+ 
+  /* ── SOURCE BADGE ── */
+  .src {
+    display: inline-flex; align-items: center; gap: 3px;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 20px;
+  }
+  .src-call { background: var(--mint-bg); color: var(--green-deep); }
+  .src-device { background: var(--green-bg); color: var(--green-deep); }
+  .src-partial { background: var(--amber-bg); color: var(--amber-deep); }
+  .src-none { background: var(--cream); color: var(--light); border: 1px solid var(--border-neu); }
+ 
+  /* ── STATUS CHIPS ── */
+  .chip {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 10px; border-radius: 20px;
+    font-size: 12px; font-weight: 600;
+  }
+  .chip-green { background: var(--mint-bg); color: var(--green-deep); }
+  .chip-amber { background: var(--amber-bg); color: var(--amber-deep); }
+  .chip-terra { background: var(--terra-bg); color: var(--terra); }
+  .chip-neutral { background: var(--cream); color: var(--mid); border: 1px solid var(--border-neu); }
+ 
+  /* ── SUMMARY BOX ── */
   .summary-box {
-    background: linear-gradient(135deg, #EEF2FF 0%, #F5F3FF 100%);
-    border-radius: var(--radius); padding: 16px 18px;
-    border: 1px solid #C7D2FE;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid var(--border-neu);
+    padding: 22px 24px;
+    color: var(--body);
   }
   .summary-box .ai-lbl {
-    display: flex; align-items: center; gap: 7px;
-    font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--brand); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--green-deep); margin-bottom: 14px;
   }
-  .summary-box p { font-size: 14px; line-height: 1.85; color: var(--gray-800); margin-bottom: 8px; }
-  .summary-box p:last-child { margin-bottom: 0; }
-  .hi { background: rgba(79,124,255,.13); border-radius: 4px; padding: 1px 5px; font-weight: 700; color: #1E40AF; }
-  .hi-warn { background: rgba(245,158,11,.13); border-radius: 4px; padding: 1px 5px; font-weight: 700; color: #92400E; }
-  .hi-good { background: rgba(34,197,94,.13); border-radius: 4px; padding: 1px 5px; font-weight: 700; color: #166534; }
-  .todo-list { margin-top: 10px; padding: 10px 14px; background: rgba(79,124,255,.07); border-radius: 10px; }
-  .todo-list div { font-size: 13px; color: var(--gray-700); padding: 2px 0; }
-
-  /* ===== CALL LOG CARD ===== */
-  .caller-card {
-    display: flex; align-items: center; gap: 12px;
-    padding: 11px 14px; background: var(--teal-light);
-    border-radius: 12px; border: 1px solid #99F6E4;
+  .summary-box p {
+    font-size: 14px; line-height: 1.85;
+    color: var(--body); margin-bottom: 10px;
+    font-family: var(--font-body);
+  }
+  .summary-box p:last-of-type { margin-bottom: 0; }
+  .hi { background: var(--green-bg); border-radius: 5px; padding: 1px 6px; font-weight: 600; color: var(--green-deep); }
+  .hi-warn { background: var(--amber-bg); border-radius: 5px; padding: 1px 6px; font-weight: 600; color: var(--amber-deep); }
+  .hi-good { background: var(--mint-bg); border-radius: 5px; padding: 1px 6px; font-weight: 600; color: var(--green-deep); }
+  .todo-box {
+    margin-top: 16px;
+    background: var(--green-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+  .todo-box .todo-lbl {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--green-deep); margin-bottom: 8px;
+  }
+  .todo-box div { font-size: 13.5px; color: var(--body); padding: 2px 0; }
+ 
+  /* ── QUOTE ── */
+  .quote-wrap {
+    background: var(--cream);
+    border-left: 3px solid var(--green-lt);
+    border-radius: 0 10px 10px 0;
+    padding: 12px 16px;
+    margin-top: 16px;
+  }
+  .quote-wrap .q-label {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--light); margin-bottom: 5px;
+  }
+  .quote-wrap p {
+    font-family: var(--font-quote);
+    font-size: 14px; margin-bottom: 0;
+    color: var(--charcoal);
+  }
+ 
+  /* ── SCORE RINGS ── */
+  .rings { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .ring-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .ring-svg { width: 68px; height: 68px; }
+  .ring-lbl {
+    font-size: 12px; font-weight: 500;
+    color: var(--mid); text-align: center; line-height: 1.3;
+  }
+  .ring-status { font-size: 11px; font-weight: 700; }
+ 
+  /* ── DATA ROWS ── */
+  .vrow {
+    display: flex; align-items: center; gap: 8px;
+    padding: 9px 0; border-bottom: 1px solid var(--border-neu);
+  }
+  .vrow:last-child { border-bottom: none; }
+  .vrow .vlbl { flex: 1; font-size: 13px; color: var(--mid); }
+  .vrow .vval { font-size: 14px; font-weight: 600; color: var(--charcoal); }
+ 
+  .frow {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 0; border-bottom: 1px solid var(--border-neu);
+    font-size: 13px;
+  }
+  .frow:last-child { border-bottom: none; }
+  .frow .fico { font-size: 15px; flex-shrink: 0; }
+  .frow .flbl { flex: 1; color: var(--mid); }
+  .flag-y { color: var(--terra); font-weight: 600; }
+  .flag-n { color: var(--green-deep); font-weight: 600; }
+  .flag-u { color: var(--light); font-style: italic; font-size: 12px; }
+ 
+  /* ── PROGRESS ── */
+  .prog-wrap { margin-bottom: 10px; }
+  .prog-lbl { display: flex; justify-content: space-between; font-size: 12px; color: var(--mid); margin-bottom: 5px; }
+  .prog-bar { height: 7px; border-radius: 10px; background: var(--border-neu); overflow: hidden; }
+  .prog-fill { height: 100%; border-radius: 10px; }
+ 
+  /* ── ALERT ── */
+  .alert {
+    border-radius: 12px; padding: 13px 16px;
+    display: flex; align-items: flex-start; gap: 11px;
     margin-bottom: 10px;
   }
-  .caller-ava { width: 40px; height: 40px; border-radius: 50%; background: #CCFBF1; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
-  .caller-info .cname { font-size: 14px; font-weight: 700; color: #0F766E; }
-  .caller-info .cmeta { font-size: 11.5px; color: #0D9488; margin-top: 1px; }
+  .alert-terra { background: var(--terra-bg); border-left: 3px solid var(--terra); }
+  .alert-amber { background: var(--amber-bg); border-left: 3px solid var(--amber); }
+  .alert-green { background: var(--mint-bg); border-left: 3px solid var(--mint); }
+  .alert-neutral { background: var(--cream); border-left: 3px solid var(--light); border: 1px solid var(--border-neu); }
+  .alert .aico { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .alert .atitle { font-size: 13.5px; font-weight: 600; color: var(--charcoal); }
+  .alert .adesc { font-size: 12.5px; color: var(--mid); margin-top: 2px; line-height: 1.65; }
+ 
+  /* ── CALL LOG ── */
+  .caller-card {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 16px;
+    background: var(--mint-bg);
+    border: 1px solid rgba(104,196,154,0.3);
+    border-radius: 14px;
+    margin-bottom: 12px;
+  }
+  .caller-ava {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(82,165,115,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; flex-shrink: 0;
+  }
+  .caller-info .cname { font-size: 14px; font-weight: 600; color: var(--green-deep); }
+  .caller-info .cmeta { font-size: 12px; color: var(--green-mid); margin-top: 1px; }
   .call-stat { margin-left: auto; text-align: right; }
-  .call-stat .cnum { font-size: 20px; font-weight: 800; color: #0F766E; line-height: 1; }
-  .call-stat .clbl { font-size: 10px; color: #0D9488; }
+  .call-stat .cnum { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--green-deep); line-height: 1; }
+  .call-stat .clbl { font-size: 10px; color: var(--green-mid); }
+ 
   .call-log-row {
     display: flex; align-items: center; gap: 10px;
-    padding: 8px 12px; border-radius: 9px; background: var(--gray-50);
+    padding: 9px 12px; border-radius: 10px;
+    background: var(--cream);
     margin-bottom: 6px; font-size: 13px;
   }
   .call-log-row:last-child { margin-bottom: 0; }
-  .call-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal); flex-shrink:0; }
-  .call-day { font-weight: 700; color: var(--teal); min-width: 30px; }
-  .call-desc { flex: 1; color: var(--gray-600); }
-  .call-dur { font-size: 11px; color: var(--gray-400); }
-  .quote-box {
-    background: #F0FDFA; border-left: 3px solid var(--teal);
-    border-radius: 0 8px 8px 0; padding: 9px 12px; margin-top: 10px;
-    font-size: 13px; color: var(--gray-700); line-height: 1.7;
+  .call-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+  .call-day { font-weight: 600; color: var(--green-deep); min-width: 32px; }
+  .call-desc { flex: 1; color: var(--mid); }
+  .call-dur { font-size: 11px; color: var(--light); }
+ 
+  /* ── ADL GRID ── */
+  .adl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .adl-item {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--cream); border-radius: 10px;
+    padding: 8px 10px; font-size: 12.5px;
   }
-  .quote-box .q-label { font-size: 10.5px; color: var(--teal); font-weight: 700; margin-bottom: 4px; letter-spacing: .5px; text-transform: uppercase; }
-
-  /* ===== ALERT ===== */
-  .alert { border-radius: 11px; padding: 11px 14px; display:flex; align-items:flex-start; gap:10px; margin-bottom:8px; }
-  .alert-r { background:#FEF2F2; border-left:3px solid #EF4444; }
-  .alert-y { background:#FFFBEB; border-left:3px solid #F59E0B; }
-  .alert-g { background:#F0FDF4; border-left:3px solid #22C55E; }
-  .alert-b { background:#EFF6FF; border-left:3px solid #3B82F6; }
-  .alert .aico { font-size:18px; flex-shrink:0; margin-top:1px; }
-  .alert .atitle { font-size:13.5px; font-weight:700; }
-  .alert .adesc { font-size:12px; color:var(--gray-600); margin-top:2px; }
-
-  /* ===== SCORE RINGS ===== */
-  .rings { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-  .ring-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
-  .ring-svg { width:64px; height:64px; flex-shrink:0; }
-  .ring-center { font-size:17px; font-weight:800; }
-  .ring-lbl { font-size:11.5px; font-weight:600; color:var(--gray-600); text-align:center; line-height:1.3; }
-  .ring-status { font-size:11px; font-weight:700; }
-
-  /* ===== VITAL ROW ===== */
-  .vrow { display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid var(--gray-100); }
-  .vrow:last-child { border-bottom:none; }
-  .vrow .vlbl { flex:1; font-size:13px; color:var(--gray-600); }
-  .vrow .vval { font-size:14.5px; font-weight:700; }
-  .vrow .vsrc { margin-left:4px; }
-
-  /* ===== FLAG ROW ===== */
-  .frow { display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:1px solid var(--gray-100); font-size:13px; }
-  .frow:last-child { border-bottom:none; }
-  .frow .fico { font-size:15px; flex-shrink:0; }
-  .frow .flbl { flex:1; color:var(--gray-700); }
-  .flag-y { color:var(--red); font-weight:700; }
-  .flag-n { color:var(--green); font-weight:600; }
-  .flag-u { color:var(--gray-400); font-style:italic; font-size:12px; }
-
-  /* ===== PROGRESS ===== */
-  .prog-wrap { margin-bottom:9px; }
-  .prog-lbl { display:flex; justify-content:space-between; font-size:12px; margin-bottom:4px; }
-  .prog-bar { height:7px; border-radius:10px; background:var(--gray-100); overflow:hidden; }
-  .prog-fill { height:100%; border-radius:10px; }
-
-  /* ===== ADL GRID ===== */
-  .adl-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-  .adl-item { display:flex; align-items:center; gap:7px; background:var(--gray-50); border-radius:8px; padding:7px 9px; font-size:12.5px; }
-  .adl-ico { font-size:14px; }
-  .adl-lbl { flex:1; }
-  .adl-val { font-weight:700; font-size:12px; }
-
-  /* ===== MED ===== */
-  .med-item { display:flex; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px solid var(--gray-100); }
-  .med-item:last-child { border-bottom:none; }
-  .med-ico { font-size:18px; flex-shrink:0; margin-top:1px; }
-  .med-name { font-size:13px; font-weight:700; }
-  .med-dose { font-size:11.5px; color:var(--gray-500); }
-  .med-status { margin-left:auto; font-size:19px; flex-shrink:0; }
-
-  /* ===== CHART ===== */
-  .chart-wrap { position:relative; height:120px; }
-
-  /* ===== PAIN DOTS ===== */
-  .pain-dots { display:flex; gap:4px; margin-top:7px; }
-  .pain-dot { flex:1; height:26px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:10.5px; font-weight:700; color:white; }
-
-  /* ===== PHQ BAR ===== */
-  .phq-bar { display:flex; height:10px; border-radius:10px; overflow:hidden; margin:8px 0 4px; }
-  .phq-seg { height:100%; }
-
-  /* ===== DIVIDER ===== */
-  .div { height:1px; background:var(--gray-100); margin:8px 0; }
-
-  /* ===== NOT MEASURED ===== */
-  .not-measured { font-size:12px; color:var(--gray-400); font-style:italic; }
-
-  .footnote { text-align:center; font-size:11px; color:var(--gray-400); padding:18px 0 6px; }
-
-  @media (max-width:580px) {
-    .rings, .grid4 { grid-template-columns:1fr 1fr; }
-    .grid3 { grid-template-columns:1fr 1fr; }
-    .grid2 { grid-template-columns:1fr; }
+  .adl-ico { font-size: 14px; }
+  .adl-lbl { flex: 1; color: var(--mid); }
+  .adl-val { font-weight: 600; font-size: 12px; }
+ 
+  /* ── MED ── */
+  .med-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 0; border-bottom: 1px solid var(--border-neu);
+  }
+  .med-item:last-child { border-bottom: none; }
+  .med-ico { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .med-name { font-size: 13.5px; font-weight: 600; color: var(--charcoal); }
+  .med-dose { font-size: 12px; color: var(--mid); }
+  .med-status { margin-left: auto; font-size: 20px; flex-shrink: 0; }
+ 
+  /* ── CHART ── */
+  .chart-wrap { position: relative; height: 130px; }
+ 
+  /* ── PAIN DOTS ── */
+  .pain-dots { display: flex; gap: 4px; margin-top: 8px; }
+  .pain-dot {
+    flex: 1; height: 28px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10.5px; font-weight: 700; color: white;
+  }
+ 
+  /* ── PHQ BAR ── */
+  .phq-bar { display: flex; height: 10px; border-radius: 10px; overflow: hidden; margin: 10px 0 5px; }
+  .phq-seg { height: 100%; }
+ 
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border-neu); margin: 12px 0; }
+ 
+  /* ── NOTE BOX ── */
+  .note-box {
+    padding: 11px 14px; border-radius: 10px;
+    font-size: 13px; line-height: 1.7;
+    margin-top: 12px;
+  }
+  .note-green { background: var(--mint-bg); color: var(--green-deep); }
+  .note-amber { background: var(--amber-bg); color: var(--amber-deep); }
+  .note-terra { background: var(--terra-bg); color: var(--terra); }
+  .note-neutral { background: var(--cream); color: var(--mid); border: 1px solid var(--border-neu); }
+ 
+  /* ── FOOTER ── */
+  .footnote {
+    text-align: center; font-size: 11.5px; color: var(--light);
+    padding: 24px 0 8px; line-height: 1.8;
+  }
+ 
+  @media (max-width: 580px) {
+    .rings, .g4 { grid-template-columns: 1fr 1fr; }
+    .g3 { grid-template-columns: 1fr 1fr; }
+    .g2 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-
-<!-- BANNER -->
+ 
+<!-- ── BANNER ── -->
 <div class="banner">
   <div class="banner-top">
-    <span style="font-size:20px">🌿</span>
-    <span class="app-name">Kindred</span>
+    <svg width="24" height="24" viewBox="0 0 56 56" fill="none">
+      <circle cx="21" cy="28" r="15" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+      <circle cx="35" cy="28" r="15" fill="rgba(232,137,90,0.25)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
+      <path d="M28 20 C28 20 24.5 24 24.5 28 C24.5 31 26 33 28 34 C30 33 31.5 31 31.5 28 C31.5 24 28 20 28 20Z" fill="white" opacity="0.75"/>
+    </svg>
+    <span class="banner-logo">Kindred</span>
     <span class="week-pill">สัปดาห์ที่ 15 / 2569</span>
   </div>
   <div class="patient-card">
     <div class="avatar">👩‍🦳</div>
     <div class="pinfo">
       <div class="name">คุณแม่ สมศรี รักสุขภาพ</div>
-      <div class="meta">อายุ 72 ปี · เบาหวาน T2 + ความดันโลหิตสูง · อยู่บ้านกับสามี</div>
-      <div style="margin-top:5px; display:flex; gap:6px; flex-wrap:wrap;">
-        <span class="chip chip-blue" style="font-size:11px;">📞 ติดตาม 3 ครั้ง/สัปดาห์</span>
-        <span class="chip chip-blue" style="font-size:11px;">⌚ BP Cuff + Pedometer</span>
+      <div class="meta">อายุ 72 ปี · เบาหวาน T2 + ความดันโลหิตสูง · อยู่บ้านกับสามีที่อุดรฯ</div>
+      <div class="tags">
+        <span class="ptag">📞 ติดตาม 3 ครั้ง/สัปดาห์</span>
+        <span class="ptag">⌚ BP Cuff + Pedometer</span>
       </div>
     </div>
     <div class="score-bubble">
@@ -233,418 +436,397 @@
     </div>
   </div>
 </div>
-
+ 
 <div class="main">
-
-  <!-- AI SUMMARY (TOP) -->
-  <div class="sec-title">✨ สรุปสัปดาห์นี้โดย AI</div>
+ 
+  <!-- ── AI SUMMARY ── -->
+  <div class="sec-label">
+    <span class="s-chip">✨ สรุปสัปดาห์นี้</span>
+  </div>
   <div class="summary-box">
     <div class="ai-lbl">
-      <span>🤖</span> Kindred AI · 7–13 เมษายน 2569
+      <span>🌿</span> Kindred AI · 7–13 เมษายน 2569
     </div>
     <p>
-      สัปดาห์นี้ป้าสมหมาย (เพื่อนสูงวัย) โทรหาคุณแม่ 3 ครั้ง รวมเวลา ~52 นาที จากการสนทนา คุณแม่บอกว่า <span class="hi-warn">ปวดเข่าซ้ายมากขึ้นช่วงกลางสัปดาห์ (NRS ~4)</span> และ <span class="hi-warn">รู้สึกเหนื่อยใจ เบื่อนิดหน่อย</span> ซึ่งสอดคล้องกับคะแนน PHQ-2 ที่ได้ 3 คะแนน ควรโทรไปคุยเพิ่มหรือไปเยี่ยมบ้านสัปดาห์นี้
+      สัปดาห์นี้ป้าสมหมาย (เพื่อนสูงวัย) โทรหาคุณแม่ 3 ครั้ง รวมเวลา ~52 นาที จากการสนทนา คุณแม่บอกว่า <span class="hi-warn">ปวดเข่าซ้ายมากขึ้นช่วงกลางสัปดาห์</span> และ <span class="hi-warn">รู้สึกเหนื่อยใจ เบื่อนิดหน่อย</span> ซึ่งสอดคล้องกับคะแนน PHQ-2 ที่ได้ 3 คะแนน ลองโทรถามดูนะคะ
     </p>
     <p>
-      ด้านร่างกาย — <span class="hi-warn">ความดันที่วัดเองสูงกว่าปกติ 2 ใน 3 วันที่วัด</span> (สูงสุด 156/94) และ <span class="hi-warn">ลืมกินยาเบาหวานไป 2 ครั้ง</span> เพราะสับสนมื้อเช้ากับเที่ยง น่าแจ้งแพทย์วันนัด 22 เม.ย. นี้
+      ด้านร่างกาย — <span class="hi-warn">ความดันสูงกว่าปกติ 2 ใน 3 วันที่วัด</span> (สูงสุด 156/94) และ <span class="hi-warn">ลืมกินยาเบาหวานไป 2 ครั้ง</span> เพราะสับสนมื้อเช้ากับเที่ยง น่าแจ้งแพทย์วันนัด 22 เม.ย. นี้
     </p>
     <p>
-      ข่าวดี — <span class="hi-good">ไม่มีการล้มสัปดาห์นี้</span>, ยังทำกับข้าวและทำงานบ้านได้เอง, <span class="hi-good">ความจำและการรับรู้อยู่ในเกณฑ์ปกติ</span> จากคำถามง่ายๆ ทางโทรศัพท์
+      ข่าวดี — <span class="hi-good">ไม่มีการล้มสัปดาห์นี้เลย</span>, ยังทำกับข้าวและงานบ้านได้เอง, <span class="hi-good">ความจำและการรับรู้อยู่ในเกณฑ์ปกติ</span>
     </p>
-    <div class="todo-list">
-      <div style="font-size:11px;font-weight:700;color:var(--brand);margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px;">📌 สิ่งที่ลูกหลานควรทำสัปดาห์นี้</div>
+ 
+    <div class="quote-wrap">
+      <div class="q-label">🗣️ คุณแม่พูดว่า</div>
+      <p>"สัปดาห์นี้แม่พูดถึงหลานชายบ่อยมาก ฝากบอกว่าอยากคุยด้วยนะ 🌸"</p>
+    </div>
+ 
+    <div class="todo-box">
+      <div class="todo-lbl">📌 สิ่งที่ลูกหลานควรทำสัปดาห์นี้</div>
       <div>① โทรหรือไปเยี่ยม — ถามเรื่องอารมณ์และความเหนื่อยใจ</div>
       <div>② เตือนยา Metformin มื้อเช้าก่อนอาหาร (ตั้งนาฬิกาให้)</div>
       <div>③ เตรียมคำถามพาไปหาหมอ 22 เม.ย. เรื่องความดัน + เข่า</div>
       <div>④ เช็คของกีดขวางในบ้าน (บันไดลื่น) ที่แจ้งไว้</div>
     </div>
   </div>
-
-  <!-- SCORE RINGS -->
-  <div class="sec-title">📊 ภาพรวมสัปดาห์</div>
+ 
+  <!-- ── SCORE RINGS ── -->
+  <div class="sec-label">
+    <span class="s-chip neutral">📊 ภาพรวมสัปดาห์</span>
+  </div>
   <div class="card">
     <div class="rings">
       <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#E5E7EB" stroke-width="7"/>
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#F59E0B" stroke-width="7"
-            stroke-dasharray="109 54" stroke-dashoffset="41" stroke-linecap="round"/>
-          <text x="32" y="37" text-anchor="middle" font-size="14" font-weight="800" fill="#F59E0B" font-family="Sarabun,sans-serif">70</text>
+        <svg class="ring-svg" viewBox="0 0 68 68">
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#E8895A" stroke-width="7"
+            stroke-dasharray="124 52" stroke-dashoffset="44" stroke-linecap="round"/>
+          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#E8895A" font-family="Prompt,sans-serif">70</text>
         </svg>
         <div class="ring-lbl">สุขภาพกาย</div>
-        <div class="ring-status" style="color:#F59E0B">พอใช้</div>
+        <div class="ring-status" style="color:var(--amber-deep)">พอใช้</div>
       </div>
       <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#E5E7EB" stroke-width="7"/>
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#22C55E" stroke-width="7"
-            stroke-dasharray="131 32" stroke-dashoffset="41" stroke-linecap="round"/>
-          <text x="32" y="37" text-anchor="middle" font-size="14" font-weight="800" fill="#22C55E" font-family="Sarabun,sans-serif">82</text>
+        <svg class="ring-svg" viewBox="0 0 68 68">
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#52A573" stroke-width="7"
+            stroke-dasharray="145 31" stroke-dashoffset="44" stroke-linecap="round"/>
+          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#52A573" font-family="Prompt,sans-serif">82</text>
         </svg>
         <div class="ring-lbl">ความปลอดภัย</div>
-        <div class="ring-status" style="color:#22C55E">ดี</div>
+        <div class="ring-status" style="color:var(--green-deep)">ดี</div>
       </div>
       <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#E5E7EB" stroke-width="7"/>
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#EF4444" stroke-width="7"
-            stroke-dasharray="75 88" stroke-dashoffset="41" stroke-linecap="round"/>
-          <text x="32" y="37" text-anchor="middle" font-size="14" font-weight="800" fill="#EF4444" font-family="Sarabun,sans-serif">47</text>
+        <svg class="ring-svg" viewBox="0 0 68 68">
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#C9624A" stroke-width="7"
+            stroke-dasharray="83 93" stroke-dashoffset="44" stroke-linecap="round"/>
+          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#C9624A" font-family="Prompt,sans-serif">47</text>
         </svg>
         <div class="ring-lbl">สุขภาพจิต</div>
-        <div class="ring-status" style="color:#EF4444">ต้องดูแล</div>
+        <div class="ring-status" style="color:var(--terra)">ต้องดูแล</div>
       </div>
       <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#E5E7EB" stroke-width="7"/>
-          <circle cx="32" cy="32" r="26" fill="none" stroke="#4F7CFF" stroke-width="7"
-            stroke-dasharray="119 44" stroke-dashoffset="41" stroke-linecap="round"/>
-          <text x="32" y="37" text-anchor="middle" font-size="14" font-weight="800" fill="#4F7CFF" font-family="Sarabun,sans-serif">75</text>
+        <svg class="ring-svg" viewBox="0 0 68 68">
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
+          <circle cx="34" cy="34" r="28" fill="none" stroke="#74BC90" stroke-width="7"
+            stroke-dasharray="132 44" stroke-dashoffset="44" stroke-linecap="round"/>
+          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#52A573" font-family="Prompt,sans-serif">75</text>
         </svg>
-        <div class="ring-lbl">ทำกิจวัตร<br>ด้วยตนเอง</div>
-        <div class="ring-status" style="color:#4F7CFF">ดี</div>
+        <div class="ring-lbl">การดูแลตัวเอง</div>
+        <div class="ring-status" style="color:var(--green-deep)">ดี</div>
       </div>
     </div>
   </div>
-
-  <!-- ALERTS -->
-  <div class="sec-title">⚠️ สิ่งที่ต้องใส่ใจ</div>
-  <div class="alert alert-r">
-    <div class="aico">🔴</div>
+ 
+  <!-- ── ALERTS ── -->
+  <div class="sec-label">
+    <span class="s-chip amber">⚠️ สิ่งที่ควรรู้สัปดาห์นี้</span>
+  </div>
+  <div class="alert alert-terra">
+    <div class="aico">❤️</div>
     <div>
-      <div class="atitle">ความดันโลหิตสูงกว่าเป้า 2 ใน 3 วัน</div>
-      <div class="adesc">วัดเองด้วย BP Cuff — สูงสุด 156/94 mmHg (วันพุธ) · ควรแจ้งแพทย์</div>
+      <div class="atitle">ความดันสูงกว่าปกติ</div>
+      <div class="adesc">วัดได้ 144/88, 156/94, 148/90 — 2 ใน 3 วันเกินเป้า อาจปรับยาตอนไปหาหมอ 22 เม.ย.</div>
     </div>
   </div>
-  <div class="alert alert-y">
-    <div class="aico">🟡</div>
+  <div class="alert alert-amber">
+    <div class="aico">💊</div>
     <div>
-      <div class="atitle">ลืมกินยาเบาหวาน 2 ครั้ง — สับสนมื้ออาหาร</div>
-      <div class="adesc">Metformin วันจันทร์เช้า + วันพฤหัสกลางวัน · "แม่บอกว่าคิดว่ากินไปแล้ว"</div>
+      <div class="atitle">ลืมกินยาเบาหวาน 2 ครั้ง</div>
+      <div class="adesc">Metformin มื้อเช้า — แม่บอกสับสนมื้อเช้ากับเที่ยง ลองตั้งนาฬิกาปลุกให้แม่ดีมั้ยคะ?</div>
     </div>
   </div>
-  <div class="alert alert-y">
-    <div class="aico">🟡</div>
+  <div class="alert alert-amber">
+    <div class="aico">😔</div>
     <div>
-      <div class="atitle">รู้สึกเหนื่อยใจ ไม่ค่อยอยากทำอะไร (PHQ-2 = 3)</div>
-      <div class="adesc">แจ้งระหว่างโทรคุยวันอังคาร · อาจเกี่ยวกับแผลเข่าที่ยังไม่หาย</div>
+      <div class="atitle">อารมณ์เหนื่อยใจนิดหน่อย</div>
+      <div class="adesc">PHQ-2 ได้ 3 คะแนน · แม่บอกว่าเบื่อนิดหน่อย คิดถึงลูกหลาน</div>
     </div>
   </div>
-  <div class="alert alert-g">
-    <div class="aico">🟢</div>
+  <div class="alert alert-green">
+    <div class="aico">🎉</div>
     <div>
-      <div class="atitle">ไม่มีการล้มสัปดาห์นี้ 🎉</div>
-      <div class="adesc">แจ้งด้วยตนเอง · ระวังตัวมากขึ้นหลังจากตกบันไดเมื่อ 50 วันก่อน</div>
+      <div class="atitle">ไม่มีการล้มสัปดาห์นี้เลย</div>
+      <div class="adesc">แม่บอกว่าระวังตัวมากขึ้นเองเลย · ข่าวดีมากค่ะ!</div>
     </div>
   </div>
-  <div class="alert alert-b">
-    <div class="aico">📅</div>
-    <div>
-      <div class="atitle">นัดพบแพทย์: 22 เมษายน 2569 เวลา 09:00 น.</div>
-      <div class="adesc">รพ.สต.บ้านดอนไม้ · คาดว่าต้องการคนพา เพราะรถไม่ค่อยสะดวก</div>
+ 
+  <!-- ── CALL LOG ── -->
+  <div class="sec-label">
+    <span class="s-chip">📞 การพูดคุยสัปดาห์นี้</span>
+  </div>
+  <div class="card">
+    <div class="caller-card">
+      <div class="caller-ava">👵</div>
+      <div class="caller-info">
+        <div class="cname">ป้าสมหมาย</div>
+        <div class="cmeta">เพื่อนสูงวัย · ผ่านการอบรม Kindred</div>
+      </div>
+      <div class="call-stat">
+        <div class="cnum">3</div>
+        <div class="clbl">ครั้ง / ~52 นาที</div>
+      </div>
+    </div>
+    <div class="call-log-row">
+      <div class="call-dot"></div>
+      <div class="call-day">จ.</div>
+      <div class="call-desc">สอบถามทั่วไป · สุขภาพกาย อาหาร ยา · อารมณ์ดี</div>
+      <div class="call-dur">~18 นาที</div>
+    </div>
+    <div class="call-log-row">
+      <div class="call-dot"></div>
+      <div class="call-day">พ.</div>
+      <div class="call-desc">แม่เล่าเรื่องเข่าปวด · PHQ-2 · ความดัน · ยา</div>
+      <div class="call-dur">~22 นาที</div>
+    </div>
+    <div class="call-log-row">
+      <div class="call-dot"></div>
+      <div class="call-day">ศ.</div>
+      <div class="call-desc">ติดตามอาการเข่า · นัดหมาย 22 เม.ย. · เรื่องยาใกล้หมด</div>
+      <div class="call-dur">~12 นาที</div>
     </div>
   </div>
-
-  <!-- CALL LOG -->
-  <div class="sec-title">📞 บันทึกการโทรติดตามสัปดาห์นี้</div>
-  <div class="caller-card">
-    <div class="caller-ava">👵</div>
-    <div class="caller-info">
-      <div class="cname">ป้าสมหมาย จิตอาสา</div>
-      <div class="cmeta">เพื่อนสูงวัย · อบรมแล้ว 48 ชม. · ดูแลคุณแม่สมศรีมา 3 เดือน</div>
-    </div>
-    <div class="call-stat">
-      <div class="cnum">3</div>
-      <div class="clbl">ครั้งสัปดาห์นี้<br>รวม ~52 นาที</div>
-    </div>
+ 
+  <!-- ── VITALS ── -->
+  <div class="sec-label">
+    <span class="s-chip neutral">💓 สัญญาณชีพ & ร่างกาย</span>
   </div>
-
-  <div class="call-log-row">
-    <div class="call-dot"></div>
-    <div class="call-day">จ.</div>
-    <div class="call-desc">เช็คอารมณ์ + ยา + อาการปวดเข่า · ถามเรื่องมื้ออาหารเมื่อวาน</div>
-    <div class="call-dur">18 นาที</div>
-  </div>
-  <div class="call-log-row">
-    <div class="call-dot"></div>
-    <div class="call-day">อ.</div>
-    <div class="call-desc">PHQ-2 + ถามความจำ 3 คำ + ถามเรื่องการนอน · คุณแม่เล่าเรื่องหลานชาย</div>
-    <div class="call-dur">21 นาที</div>
-  </div>
-  <div class="call-log-row">
-    <div class="call-dot"></div>
-    <div class="call-day">ศ.</div>
-    <div class="call-desc">สรุปสัปดาห์ + เตือนนัดแพทย์ + ถาม ADL ชุดสั้น · วัดความดันพร้อมกัน</div>
-    <div class="call-dur">13 นาที</div>
-  </div>
-
-  <div class="quote-box">
-    <div class="q-label">💬 สิ่งที่คุณแม่พูดระหว่างสัปดาห์ (บันทึกโดยเพื่อนสูงวัย)</div>
-    "เข่าซ้ายมันปวดมากกว่าปกตินะ โดยเฉพาะตอนเช้า ลุกจากเตียงแล้วเจ็บ…" <br>
-    "ยาที่หมอสั่งมันเยอะ บางทีจำไม่ได้ว่ากินแล้วหรือยัง กลัวกินซ้ำก็เลยข้ามไป" <br>
-    "รู้สึกเหนื่อยๆ ไม่รู้เป็นอะไร อยู่บ้านนานก็เบื่อนิดหน่อย แต่ไม่ถึงกับเป็นอะไรนะ"
-  </div>
-
-  <!-- VITALS -->
-  <div class="sec-title">🩺 ค่าสัญญาณชีพ</div>
-  <div class="grid2">
+  <div class="g2">
+    <!-- BP -->
     <div class="card">
       <div class="card-head">
-        <div class="ico" style="background:#FEF2F2">❤️</div>
+        <div class="card-ico" style="background:var(--terra-bg)">❤️</div>
         <h3>ความดันโลหิต</h3>
-        <span class="src src-device">⌚ BP Cuff</span>
+        <span class="src src-device">⌚ วัดเอง</span>
       </div>
-      <div style="font-size:11.5px;color:var(--gray-400);margin-bottom:6px">วัดเองที่บ้าน 3 วัน (จ. พ. ศ.) — ยังไม่วัดทุกวัน</div>
-      <div class="chart-wrap"><canvas id="bpChart"></canvas></div>
-      <div class="vrow" style="margin-top:6px">
-        <div class="vlbl">ล่าสุด (ศ. เช้า)</div>
-        <div class="vval" style="color:#F59E0B">148 / 90</div>
-        <span class="chip chip-yellow" style="font-size:11px">⚠️ สูง</span>
+      <div class="chart-wrap">
+        <canvas id="bpChart"></canvas>
       </div>
-      <div class="vrow">
-        <div class="vlbl">สูงสุดสัปดาห์</div>
-        <div class="vval" style="color:#EF4444">156 / 94</div>
-        <span class="chip chip-red" style="font-size:11px">วันพุธ</span>
-      </div>
-      <div style="font-size:11.5px;color:var(--gray-500);margin-top:8px;padding:7px 10px;background:var(--gray-50);border-radius:8px;">
-        วันที่ไม่ได้วัด: อ. พฤ. ส. อา. — <em>คุณแม่บอกว่าลืม / เครื่องหาไม่เจอ</em>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-head">
-        <div class="ico" style="background:#FFF7ED">🚶</div>
-        <h3>ก้าวเดินรายวัน</h3>
-        <span class="src src-device">⌚ Pedometer</span>
-      </div>
-      <div class="chart-wrap"><canvas id="stepsChart"></canvas></div>
-      <div class="vrow" style="margin-top:6px">
-        <div class="vlbl">เฉลี่ยสัปดาห์</div>
-        <div class="vval">3,240</div>
-        <span class="chip chip-yellow" style="font-size:11px">ต่ำกว่าเป้า</span>
+      <div class="vrow" style="margin-top:8px">
+        <div class="vlbl">สูงสุดสัปดาห์นี้</div>
+        <div class="vval" style="color:var(--terra)">156 / 94</div>
       </div>
       <div class="vrow">
         <div class="vlbl">เป้าหมาย</div>
-        <div class="vval" style="color:var(--gray-400)">5,000</div>
-        <span class="chip chip-gray" style="font-size:11px">ก้าว/วัน</span>
+        <div class="vval" style="color:var(--mid)">≤ 140 / 90</div>
       </div>
-      <div style="font-size:11.5px;color:var(--gray-500);margin-top:8px;padding:7px 10px;background:var(--gray-50);border-radius:8px;">
-        วันพุธก้าวน้อยมาก — คุณแม่บอกเข่าปวดเลยพักอยู่บ้าน
-      </div>
+      <div class="note-box note-terra">⚠️ เกินเป้าหมาย 2 ใน 3 วันที่วัด — แจ้งแพทย์ 22 เม.ย.</div>
     </div>
-  </div>
-
-  <div class="card" style="margin-top:11px">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-      <span style="font-size:14px;font-weight:700">น้ำหนัก & ค่าอื่นๆ</span>
-    </div>
-    <div class="grid2">
-      <div>
-        <div class="vrow">
-          <div class="vlbl">น้ำหนัก (weight_kg)</div>
-          <div class="vval">~65 กก.</div>
-          <span class="src src-call" style="margin-left:4px">📞 ชั่งเอง</span>
-        </div>
-        <div class="vrow">
-          <div class="vlbl">รอบน่อง (calf_cm)</div>
-          <div class="vval">31 ซม.</div>
-          <span class="src src-call" style="margin-left:4px">📞 วัดเอง</span>
-        </div>
-      </div>
-      <div>
-        <div class="vrow">
-          <div class="vlbl">น้ำตาล (glucose_mgdl)</div>
-          <div class="not-measured">ไม่ได้วัดสัปดาห์นี้</div>
-          <span class="src src-none" style="margin-left:4px">— ไม่มีข้อมูล</span>
-        </div>
-        <div class="vrow">
-          <div class="vlbl">สุขภาพโดยรวม (self_rated)</div>
-          <div class="vval">6 / 10</div>
-          <span class="src src-call" style="margin-left:4px">📞 ถาม</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SYMPTOMS -->
-  <div class="sec-title">😷 อาการ (รายงานทางโทรศัพท์)</div>
-  <div class="card">
-    <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;">📞 ถามโดยเพื่อนสูงวัย · ข้อมูลเป็นการรายงานด้วยตนเอง</div>
-    <div class="grid2">
-      <div>
-        <div class="frow"><div class="fico">🤕</div><div class="flbl">มีอาการผิดปกติ</div><div class="flag-y">มี</div></div>
-        <div class="frow"><div class="fico">💢</div><div class="flbl">ความปวด (pain_nrs)</div><div class="vval">~4<span style="font-size:11px;color:var(--gray-400)">/10</span></div></div>
-        <div class="frow"><div class="fico">📍</div><div class="flbl">ตำแหน่งที่ปวด</div><div style="font-size:12px;font-weight:600;color:var(--brand)">เข่าซ้าย</div></div>
-        <div class="frow"><div class="fico">😮‍💨</div><div class="flbl">หอบเหนื่อย</div><div class="flag-n">ไม่มี</div></div>
-      </div>
-      <div>
-        <div class="frow"><div class="fico">💓</div><div class="flbl">แน่นหน้าอก</div><div class="flag-n">ไม่มี</div></div>
-        <div class="frow"><div class="fico">👁️</div><div class="flbl">ปัญหาการมองเห็น</div><div class="flag-n">ไม่มี</div></div>
-        <div class="frow"><div class="fico">👂</div><div class="flbl">ปัญหาการได้ยิน</div><div class="flag-y">มีบ้าง</div></div>
-        <div class="frow"><div class="fico">💤</div><div class="flbl">คุณภาพการนอน</div><div class="vval">5–6<span style="font-size:11px;color:var(--gray-400)">/10</span></div></div>
-      </div>
-    </div>
-    <div style="margin-top:10px">
-      <div style="font-size:12px;color:var(--gray-600);margin-bottom:5px">ระดับความปวดเข่าตลอดสัปดาห์ (ตามที่บอก)</div>
-      <div class="pain-dots">
-        <div class="pain-dot" style="background:#22C55E">จ<br><span style="font-size:9px">2</span></div>
-        <div class="pain-dot" style="background:#F59E0B">อ<br><span style="font-size:9px">4</span></div>
-        <div class="pain-dot" style="background:#EF4444">พ<br><span style="font-size:9px">5</span></div>
-        <div class="pain-dot" style="background:#F59E0B">พฤ<br><span style="font-size:9px">4</span></div>
-        <div class="pain-dot" style="background:#F59E0B">ศ<br><span style="font-size:9px">3</span></div>
-        <div class="pain-dot" style="background:#22C55E" style="opacity:.4">ส<br><span style="font-size:9px">—</span></div>
-        <div class="pain-dot" style="background:#9CA3AF">อา<br><span style="font-size:9px">?</span></div>
-      </div>
-      <div style="font-size:11px;color:var(--gray-400);margin-top:4px">วันเสาร์-อาทิตย์ไม่มีการโทร — ไม่มีข้อมูล</div>
-    </div>
-  </div>
-
-  <!-- MENTAL HEALTH -->
-  <div class="sec-title">🧠 สุขภาพจิต & อารมณ์</div>
-  <div class="grid2">
+ 
+    <!-- Steps -->
     <div class="card">
       <div class="card-head">
-        <div class="ico" style="background:#FEF2F2">💙</div>
-        <h3>PHQ-9 อารมณ์ซึมเศร้า</h3>
+        <div class="card-ico" style="background:var(--green-bg)">🦶</div>
+        <h3>ก้าวเดิน / วัน</h3>
+        <span class="src src-device">⌚ Pedometer</span>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="stepsChart"></canvas>
+      </div>
+      <div class="vrow" style="margin-top:8px">
+        <div class="vlbl">เฉลี่ย / วัน</div>
+        <div class="vval" style="color:var(--amber-deep)">3,357 ก้าว</div>
+      </div>
+      <div class="vrow">
+        <div class="vlbl">เป้าหมาย</div>
+        <div class="vval" style="color:var(--mid)">5,000 ก้าว</div>
+      </div>
+      <div class="note-box note-amber">ต่ำกว่าเป้า — วันพุธน้อยมาก เข่าปวด แม่บอกเองค่ะ</div>
+    </div>
+  </div>
+ 
+  <!-- Vitals other -->
+  <div class="g3" style="margin-top:14px">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-ico" style="background:var(--amber-bg)">🌡️</div>
+        <h3>น้ำหนัก & BMI</h3>
+      </div>
+      <div class="vrow">
+        <div class="vlbl">น้ำหนัก</div>
+        <div class="vval">62 กก.</div>
+      </div>
+      <div class="vrow">
+        <div class="vlbl">BMI</div>
+        <div class="vval" style="color:var(--amber-deep)">25.4</div>
+        <span class="chip chip-amber" style="font-size:11px">น้ำหนักเกินเล็กน้อย</span>
+      </div>
+      <div class="vrow">
+        <div class="vlbl">น้ำหนักเปลี่ยน (30 วัน)</div>
+        <div class="vval" style="color:var(--green-deep)">ไม่เปลี่ยน</div>
+      </div>
+      <div style="font-size:11px;color:var(--light);margin-top:8px">📞 ถามทางโทรศัพท์ ไม่ได้ชั่งจริง</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-ico" style="background:var(--terra-bg)">🔥</div>
+        <h3>ปวด (NRS)</h3>
+      </div>
+      <div style="font-size:11px;color:var(--light);margin-bottom:8px">📞 ถาม · 0–10 คะแนน</div>
+      <div class="pain-dots">
+        <div class="pain-dot" style="background:var(--green)">จ<br><span style="font-size:9px">1</span></div>
+        <div class="pain-dot" style="background:var(--border-neu);color:var(--mid)">อ<br><span style="font-size:9px">—</span></div>
+        <div class="pain-dot" style="background:var(--terra)">พ<br><span style="font-size:9px">4</span></div>
+        <div class="pain-dot" style="background:var(--border-neu);color:var(--mid)">พฤ<br><span style="font-size:9px">—</span></div>
+        <div class="pain-dot" style="background:var(--amber)">ศ<br><span style="font-size:9px">3</span></div>
+        <div class="pain-dot" style="background:var(--green)">ส<br><span style="font-size:9px">—</span></div>
+        <div class="pain-dot" style="background:var(--light)">อา<br><span style="font-size:9px">?</span></div>
+      </div>
+      <div class="vrow" style="margin-top:12px">
+        <div class="vlbl">เข่าซ้าย (ปวดสูงสุด)</div>
+        <div class="vval" style="color:var(--terra)">NRS 4/10</div>
+      </div>
+      <div style="font-size:11px;color:var(--light);margin-top:4px">ส-อา ไม่มีการโทร — ไม่มีข้อมูล</div>
+    </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-ico" style="background:var(--mint-bg)">⚖️</div>
+        <h3>ความเสี่ยงล้ม</h3>
+      </div>
+      <div style="font-size:11px;color:var(--light);margin-bottom:8px">📞 ถาม · TUG วัดทุกเดือน</div>
+      <div class="vrow">
+        <div class="vlbl">ล้ม ใน 90 วัน</div>
+        <div class="vval" style="color:var(--green-deep)">1 ครั้ง</div>
+        <span class="chip chip-green" style="font-size:11px">ดี</span>
+      </div>
+      <div class="vrow">
+        <div class="vlbl">กลัวล้ม</div>
+        <div class="vval" style="color:var(--amber-deep)">6/10</div>
+        <span class="chip chip-amber" style="font-size:11px">ปานกลาง</span>
+      </div>
+      <div class="vrow">
+        <div class="vlbl">เวียนหัวตอนลุก</div>
+        <div class="vval" style="color:var(--amber-deep)">มีบ้าง</div>
+      </div>
+      <div class="note-box note-neutral" style="font-size:12px">TUG / gait_speed: นัดวัด 22 เม.ย. ที่ รพ.สต.</div>
+    </div>
+  </div>
+ 
+  <!-- ── MENTAL HEALTH ── -->
+  <div class="sec-label">
+    <span class="s-chip amber">🧠 สุขภาพจิต & อารมณ์</span>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-head">
+        <div class="card-ico" style="background:var(--amber-bg)">💛</div>
+        <h3>PHQ-9 อารมณ์</h3>
         <span class="src src-call">📞 ถาม</span>
       </div>
-      <div style="text-align:center;padding:6px 0 2px">
-        <span style="font-size:34px;font-weight:800;color:#F59E0B">8</span>
-        <span style="font-size:14px;color:var(--gray-400)">/27</span>
-        <div style="margin-top:4px"><span class="chip chip-yellow">ระดับเล็กน้อย</span></div>
+      <div style="text-align:center;padding:8px 0 4px">
+        <span style="font-family:var(--font-head);font-size:36px;font-weight:700;color:var(--amber-deep)">8</span>
+        <span style="font-size:14px;color:var(--light)">/27</span>
+        <div style="margin-top:5px"><span class="chip chip-amber">ระดับเล็กน้อย</span></div>
       </div>
       <div class="phq-bar">
-        <div class="phq-seg" style="width:30%;background:#22C55E"></div>
-        <div class="phq-seg" style="width:19%;background:#F59E0B"></div>
-        <div class="phq-seg" style="width:51%;background:#E5E7EB"></div>
+        <div class="phq-seg" style="width:30%;background:var(--green)"></div>
+        <div class="phq-seg" style="width:19%;background:var(--amber)"></div>
+        <div class="phq-seg" style="width:51%;background:var(--border-neu)"></div>
       </div>
-      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--gray-400);margin-bottom:8px;">
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--light);margin-bottom:10px">
         <span>0 ปกติ</span><span>5</span><span>10</span><span>15</span><span>27</span>
       </div>
-      <div class="div"></div>
+      <div class="divider"></div>
       <div class="vrow">
-        <div class="vlbl">อารมณ์ (phq2_mood)</div>
-        <div class="vval">2/3</div><span class="chip chip-yellow" style="font-size:11px">เศร้าบ้าง</span>
+        <div class="vlbl">อารมณ์ (PHQ-2 mood)</div>
+        <div class="vval">2/3</div><span class="chip chip-amber" style="font-size:11px">เศร้าบ้าง</span>
       </div>
       <div class="vrow">
-        <div class="vlbl">ความสนใจ (phq2_interest)</div>
+        <div class="vlbl">ความสนใจ (PHQ-2 interest)</div>
         <div class="vval">1/3</div><span class="chip chip-green" style="font-size:11px">พอใช้</span>
       </div>
       <div class="vrow">
         <div class="vlbl">ความพอใจชีวิต</div>
-        <div class="vval">6/10</div><span class="src src-call" style="margin-left:4px">📞</span>
+        <div class="vval">6/10</div>
       </div>
     </div>
-
+ 
     <div class="card">
       <div class="card-head">
-        <div class="ico" style="background:#EEF2FF">🧩</div>
+        <div class="card-ico" style="background:var(--green-bg)">🧩</div>
         <h3>ความจำ & การรับรู้</h3>
         <span class="src src-call">📞 ถาม</span>
       </div>
-      <div style="font-size:11.5px;color:var(--gray-400);margin-bottom:8px;">คำถามสั้นๆ ทางโทรศัพท์ ไม่ใช่ MMSE เต็ม</div>
+      <div style="font-size:11.5px;color:var(--light);margin-bottom:10px">คำถามสั้นๆ ทางโทรศัพท์ · ไม่ใช่ MMSE เต็ม</div>
       <div class="frow"><div class="fico">📅</div><div class="flbl">รู้วันที่วันนี้</div><div class="flag-n">✓ ได้</div></div>
       <div class="frow"><div class="fico">📍</div><div class="flbl">รู้ว่าอยู่ที่ไหน</div><div class="flag-n">✓ ได้</div></div>
       <div class="frow">
         <div class="fico">💭</div>
         <div class="flbl">จำคำ 3 คำ (recall_3word)</div>
-        <div class="vval">2/3 คำ</div>
+        <div class="vval">2/3</div>
       </div>
       <div class="frow"><div class="fico">😟</div><div class="flbl">บ่นเรื่องความจำ</div><div class="flag-y">มีบ้าง</div></div>
-      <div class="frow"><div class="fico">💊</div><div class="flbl">จำชื่อยาตัวเองได้</div><div class="flag-y">จำได้บางตัว</div></div>
-      <div style="margin-top:10px;padding:9px 12px;background:var(--brand-light);border-radius:9px;font-size:12.5px;color:#1E40AF;">
-        <strong>หมายเหตุ:</strong> คะแนน cognitive ที่แสดงเป็นการประเมินเบื้องต้นทางโทรศัพท์เท่านั้น ไม่ใช่ผลการทดสอบ MMSE/MoCA อย่างเป็นทางการ
+      <div class="frow"><div class="fico">💊</div><div class="flbl">จำชื่อยาตัวเองได้</div><div class="flag-y">ได้บางตัว</div></div>
+      <div class="note-box note-neutral" style="font-size:12.5px">
+        <strong>หมายเหตุ:</strong> คะแนน cognitive เป็นการประเมินเบื้องต้นทางโทรศัพท์เท่านั้น
       </div>
     </div>
   </div>
-
-  <!-- ADL / IADL -->
-  <div class="sec-title">🚶‍♀️ การดูแลตนเองในชีวิตประจำวัน (ADL / IADL)</div>
+ 
+  <!-- ── ADL / IADL ── -->
+  <div class="sec-label">
+    <span class="s-chip neutral">🚶‍♀️ การดูแลตนเองในชีวิตประจำวัน</span>
+  </div>
   <div class="card">
-    <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;">📞 ถามโดยเพื่อนสูงวัย · คุณแม่ตอบเองทางโทรศัพท์ · อาจประเมินตนเองสูงกว่าความจริงได้</div>
-    <div class="grid2">
+    <div style="font-size:11.5px;color:var(--light);margin-bottom:14px">📞 ถามโดยเพื่อนสูงวัย · คุณแม่ตอบเองทางโทรศัพท์</div>
+    <div class="g2">
       <div>
-        <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px">ADL — กิจวัตรพื้นฐาน</div>
+        <div style="font-size:11px;font-weight:700;color:var(--light);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">ADL — กิจวัตรพื้นฐาน</div>
         <div class="adl-grid">
-          <div class="adl-item"><div class="adl-ico">🛁</div><div class="adl-lbl">อาบน้ำ</div><div class="adl-val" style="color:#22C55E">✓ ได้เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">👗</div><div class="adl-lbl">แต่งตัว</div><div class="adl-val" style="color:#22C55E">✓ ได้เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">🚽</div><div class="adl-lbl">ห้องน้ำ</div><div class="adl-val" style="color:#22C55E">✓ ได้เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">🪑</div><div class="adl-lbl">ลุกนั่ง</div><div class="adl-val" style="color:#F59E0B">ช้าลง</div></div>
-          <div class="adl-item"><div class="adl-ico">🍽️</div><div class="adl-lbl">กินอาหาร</div><div class="adl-val" style="color:#22C55E">✓ ได้เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">💧</div><div class="adl-lbl">กลั้นปัสสาวะ</div><div class="adl-val" style="color:#F59E0B">บางครั้ง</div></div>
+          <div class="adl-item"><div class="adl-ico">🛁</div><div class="adl-lbl">อาบน้ำ</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
+          <div class="adl-item"><div class="adl-ico">👗</div><div class="adl-lbl">แต่งตัว</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
+          <div class="adl-item"><div class="adl-ico">🚽</div><div class="adl-lbl">ห้องน้ำ</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
+          <div class="adl-item"><div class="adl-ico">🪑</div><div class="adl-lbl">ลุกนั่ง</div><div class="adl-val" style="color:var(--amber-deep)">ช้าลง</div></div>
+          <div class="adl-item"><div class="adl-ico">🍽️</div><div class="adl-lbl">กินอาหาร</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
+          <div class="adl-item"><div class="adl-ico">💧</div><div class="adl-lbl">กลั้นปัสสาวะ</div><div class="adl-val" style="color:var(--amber-deep)">บางครั้ง</div></div>
         </div>
       </div>
       <div>
-        <div style="font-size:12px;font-weight:700;color:var(--gray-500);margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px">IADL — ทักษะอิสระ</div>
+        <div style="font-size:11px;font-weight:700;color:var(--light);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">IADL — ทักษะอิสระ</div>
         <div class="adl-grid">
-          <div class="adl-item"><div class="adl-ico">📞</div><div class="adl-lbl">ใช้โทรศัพท์</div><div class="adl-val" style="color:#22C55E">✓ ได้</div></div>
-          <div class="adl-item"><div class="adl-ico">🛒</div><div class="adl-lbl">ซื้อของ</div><div class="adl-val" style="color:#F59E0B">ต้องพา</div></div>
-          <div class="adl-item"><div class="adl-ico">🍳</div><div class="adl-lbl">ทำอาหาร</div><div class="adl-val" style="color:#22C55E">✓ ได้</div></div>
-          <div class="adl-item"><div class="adl-ico">🧹</div><div class="adl-lbl">งานบ้าน</div><div class="adl-val" style="color:#22C55E">✓ ได้</div></div>
-          <div class="adl-item"><div class="adl-ico">💊</div><div class="adl-lbl">ดูแลยา</div><div class="adl-val" style="color:#EF4444">ลืมบ้าง</div></div>
-          <div class="adl-item"><div class="adl-ico">💰</div><div class="adl-lbl">จัดการเงิน</div><div class="adl-val" style="color:#F59E0B">ต้องช่วย</div></div>
+          <div class="adl-item"><div class="adl-ico">📞</div><div class="adl-lbl">ใช้โทรศัพท์</div><div class="adl-val" style="color:var(--green-deep)">✓ ได้</div></div>
+          <div class="adl-item"><div class="adl-ico">🛒</div><div class="adl-lbl">ซื้อของ</div><div class="adl-val" style="color:var(--amber-deep)">ต้องพา</div></div>
+          <div class="adl-item"><div class="adl-ico">🍳</div><div class="adl-lbl">ทำอาหาร</div><div class="adl-val" style="color:var(--green-deep)">✓ ได้</div></div>
+          <div class="adl-item"><div class="adl-ico">🧹</div><div class="adl-lbl">งานบ้าน</div><div class="adl-val" style="color:var(--green-deep)">✓ ได้</div></div>
+          <div class="adl-item"><div class="adl-ico">💊</div><div class="adl-lbl">ดูแลยา</div><div class="adl-val" style="color:var(--terra)">ลืมบ้าง</div></div>
+          <div class="adl-item"><div class="adl-ico">💰</div><div class="adl-lbl">จัดการเงิน</div><div class="adl-val" style="color:var(--amber-deep)">ต้องช่วย</div></div>
         </div>
       </div>
     </div>
-    <div style="margin-top:12px">
+    <div style="margin-top:16px">
       <div class="prog-wrap">
-        <div class="prog-lbl"><span>ADL (Barthel ประเมิน)</span><span style="font-weight:700;color:#22C55E">88%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:88%;background:#22C55E"></div></div>
+        <div class="prog-lbl"><span>ADL (Barthel ประเมิน)</span><span style="font-weight:600;color:var(--green-deep)">88%</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:88%;background:var(--green)"></div></div>
       </div>
       <div class="prog-wrap" style="margin-bottom:0">
-        <div class="prog-lbl"><span>IADL (Lawton ประเมิน)</span><span style="font-weight:700;color:#F59E0B">62%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:62%;background:#F59E0B"></div></div>
+        <div class="prog-lbl"><span>IADL (Lawton ประเมิน)</span><span style="font-weight:600;color:var(--amber-deep)">62%</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:62%;background:var(--amber)"></div></div>
       </div>
     </div>
   </div>
-
-  <!-- FALL RISK -->
-  <div class="sec-title">⚖️ ความเสี่ยงล้ม & การเดิน</div>
-  <div class="card">
-    <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;">📞 ถามทางโทรศัพท์ · TUG/ความเร็วเดินไม่ได้วัดสัปดาห์นี้ (วัดทุกเดือน)</div>
-    <div class="grid3">
-      <div style="text-align:center;padding:4px 0">
-        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px">falls_last_90d</div>
-        <div style="font-size:30px;font-weight:800;color:#22C55E;line-height:1">1</div>
-        <div style="font-size:12px;color:var(--gray-600)">ครั้ง ใน 90 วัน</div>
-        <div style="margin-top:4px"><span class="chip chip-green" style="font-size:11px">ดี</span></div>
-      </div>
-      <div style="text-align:center;padding:4px 0">
-        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px">fear_of_falling</div>
-        <div style="font-size:30px;font-weight:800;color:#F59E0B;line-height:1">6</div>
-        <div style="font-size:12px;color:var(--gray-600)">กลัวล้ม /10</div>
-        <div style="margin-top:4px"><span class="chip chip-yellow" style="font-size:11px">ปานกลาง</span></div>
-      </div>
-      <div style="text-align:center;padding:4px 0">
-        <div style="font-size:11px;color:var(--gray-400);margin-bottom:4px">orthostatic_flag</div>
-        <div style="font-size:28px;font-weight:800;color:#F59E0B;line-height:1">มีบ้าง</div>
-        <div style="font-size:12px;color:var(--gray-600)">เวียนหัวตอนลุก</div>
-        <div style="margin-top:4px"><span class="chip chip-yellow" style="font-size:11px">เฝ้าระวัง</span></div>
-      </div>
-    </div>
-    <div style="margin-top:10px;padding:9px 12px;background:var(--gray-50);border-radius:9px;font-size:12.5px;color:var(--gray-600)">
-      <strong>TUG / gait_speed:</strong> <span class="not-measured">ยังไม่ได้วัดสัปดาห์นี้ — นัดวัดครั้งถัดไป 22 เม.ย. ที่รพ.สต.</span>
-    </div>
+ 
+  <!-- ── MEDICATION ── -->
+  <div class="sec-label">
+    <span class="s-chip amber">💊 ยาและการกินยา</span>
   </div>
-
-  <!-- MEDICATION -->
-  <div class="sec-title">💊 ยาและการกินยา</div>
   <div class="card">
     <div class="card-head">
-      <div class="ico" style="background:#F0FDF4">💊</div>
+      <div class="card-ico" style="background:var(--mint-bg)">💊</div>
       <h3>รายการยาประจำ</h3>
       <span class="src src-call">📞 ถาม</span>
     </div>
-    <div style="font-size:11.5px;color:var(--gray-500);margin-bottom:10px">adherence_missed_doses = 2 ครั้ง · ลืมกิน ไม่ใช่ไม่ต้องการกิน</div>
+    <div style="font-size:11.5px;color:var(--light);margin-bottom:12px">adherence_missed_doses = 2 ครั้ง · ลืมกิน ไม่ใช่ไม่ต้องการกิน</div>
     <div class="prog-wrap">
-      <div class="prog-lbl"><span>อัตรากินยาสัปดาห์นี้ (Adherence)</span><span style="font-weight:700;color:#F59E0B">79%</span></div>
-      <div class="prog-bar"><div class="prog-fill" style="width:79%;background:#F59E0B"></div></div>
+      <div class="prog-lbl"><span>อัตรากินยาสัปดาห์นี้</span><span style="font-weight:600;color:var(--amber-deep)">79%</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:79%;background:var(--amber)"></div></div>
     </div>
     <div class="med-item">
       <div class="med-ico">💙</div>
       <div>
         <div class="med-name">Metformin 500 mg</div>
-        <div class="med-dose">เช้า + เย็น · เบาหวาน · <strong style="color:#EF4444">ลืม 2 ครั้ง</strong></div>
+        <div class="med-dose">เช้า + เย็น · เบาหวาน · <strong style="color:var(--terra)">ลืม 2 ครั้ง</strong></div>
       </div>
       <div class="med-status">⚠️</div>
     </div>
@@ -672,16 +854,18 @@
       </div>
       <div class="med-status">ℹ️</div>
     </div>
-    <div style="margin-top:10px;padding:9px 12px;background:#FEF2F2;border-radius:8px;font-size:12.5px;color:#991B1B">
+    <div class="note-box note-terra" style="margin-top:10px">
       <strong>⚠️ med_access_flag:</strong> ยาใกล้หมด ยังไม่ได้ไปรับ — <em>"รอลูกพาไป ไม่มีรถ"</em>
     </div>
   </div>
-
-  <!-- NUTRITION -->
-  <div class="sec-title">🥗 โภชนาการ (MNA Screening)</div>
+ 
+  <!-- ── NUTRITION ── -->
+  <div class="sec-label">
+    <span class="s-chip neutral">🥗 โภชนาการ (MNA Screening)</span>
+  </div>
   <div class="card">
-    <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;">📞 ถามทางโทรศัพท์ · ประเมินเบื้องต้นเท่านั้น</div>
-    <div class="grid2">
+    <div style="font-size:11.5px;color:var(--light);margin-bottom:12px">📞 ถามทางโทรศัพท์ · ประเมินเบื้องต้นเท่านั้น</div>
+    <div class="g2">
       <div>
         <div class="frow"><div class="fico">🍽️</div><div class="flbl">เบื่ออาหารสัปดาห์นี้</div><div class="flag-y">มีบ้าง</div></div>
         <div class="frow"><div class="fico">⚖️</div><div class="flbl">น้ำหนักลด (3 เดือน)</div><div class="flag-n">ไม่ลด</div></div>
@@ -693,21 +877,22 @@
         <div class="frow"><div class="fico">🥩</div><div class="flbl">กินโปรตีนพอ</div><div class="flag-u">ไม่แน่ใจ</div></div>
       </div>
     </div>
-    <div class="div"></div>
-    <div class="prog-wrap" style="margin-bottom:0">
-      <div class="prog-lbl"><span>MNA-SF รวม (ประเมิน)</span><span style="font-weight:700;color:#F59E0B">10/14 — เสี่ยงเล็กน้อย</span></div>
-      <div class="prog-bar"><div class="prog-fill" style="width:71%;background:#F59E0B"></div></div>
+    <div class="prog-wrap" style="margin-top:12px;margin-bottom:0">
+      <div class="prog-lbl"><span>MNA-SF รวม (ประเมิน)</span><span style="font-weight:600;color:var(--amber-deep)">10/14 — เสี่ยงเล็กน้อย</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:71%;background:var(--amber)"></div></div>
     </div>
   </div>
-
-  <!-- SOCIAL & SAFETY -->
-  <div class="sec-title">🏠 สังคม & ความปลอดภัย</div>
+ 
+  <!-- ── SOCIAL & SAFETY ── -->
+  <div class="sec-label">
+    <span class="s-chip neutral">🏠 สังคม & ความปลอดภัย</span>
+  </div>
   <div class="card">
-    <div style="font-size:11px;color:var(--gray-400);margin-bottom:10px;">📞 ถามทางโทรศัพท์ · บางข้อมูลจากการเยี่ยมบ้านครั้งล่าสุด (3 สัปดาห์ก่อน)</div>
-    <div class="grid2">
+    <div style="font-size:11.5px;color:var(--light);margin-bottom:12px">📞 ถามทางโทรศัพท์ · บางข้อมูลจากการเยี่ยมบ้านครั้งล่าสุด (3 สัปดาห์ก่อน)</div>
+    <div class="g2">
       <div>
-        <div class="frow"><div class="fico">👨‍👩‍👧</div><div class="flbl">อยู่กับ</div><div style="font-size:12.5px;font-weight:600;color:var(--brand)">สามี</div></div>
-        <div class="frow"><div class="fico">👤</div><div class="flbl">ผู้ดูแลหลัก</div><div style="font-size:12px;font-weight:600">สามี + ลูกสาว (ห่าง)</div></div>
+        <div class="frow"><div class="fico">👨‍👩‍👧</div><div class="flbl">อยู่กับ</div><div style="font-size:12.5px;font-weight:600;color:var(--green-deep)">สามี</div></div>
+        <div class="frow"><div class="fico">👤</div><div class="flbl">ผู้ดูแลหลัก</div><div style="font-size:12px;font-weight:500;color:var(--charcoal)">สามี + ลูกสาว (ห่าง)</div></div>
         <div class="frow"><div class="fico">🏠</div><div class="flbl">อันตรายในบ้าน</div><div class="flag-y">มีสิ่งกีดขวาง</div></div>
         <div class="frow"><div class="fico">🚗</div><div class="flbl">เดินทางลำบาก</div><div class="flag-y">มี</div></div>
       </div>
@@ -715,21 +900,27 @@
         <div class="frow"><div class="fico">💵</div><div class="flbl">ปัญหาการเงิน</div><div class="flag-n">ไม่มี</div></div>
         <div class="frow"><div class="fico">🛡️</div><div class="flbl">เสี่ยงถูกหลอก</div><div class="flag-n">ไม่มี</div></div>
         <div class="frow"><div class="fico">📋</div><div class="flbl">หนังสือเจตนา</div><div class="flag-n">มีแล้ว</div></div>
-        <div class="frow"><div class="fico">🙏</div><div class="flbl">ศาสนา/วัฒนธรรม</div><div style="font-size:12px;font-weight:600">พุทธ · ทำบุญทุกวันพระ</div></div>
+        <div class="frow"><div class="fico">🙏</div><div class="flbl">ศาสนา/วัฒนธรรม</div><div style="font-size:12px;font-weight:500">พุทธ · ทำบุญทุกวันพระ</div></div>
       </div>
     </div>
-    <div style="margin-top:10px;padding:9px 12px;background:#FFFBEB;border-radius:9px;font-size:12.5px;color:#92400E">
+    <div class="note-box note-amber" style="margin-top:12px">
       <strong>🏠 home_safety_notes:</strong> มีพรมเช็ดเท้าที่บันไดลื่นไม่มีราวจับ — <em>แจ้งไว้ตั้งแต่การเยี่ยมบ้านครั้งที่แล้ว ยังไม่ได้แก้ไข</em>
     </div>
   </div>
-
+ 
   <div class="footnote">
-    Kindred Weekly Report &nbsp;·&nbsp; 7–13 เมษายน 2569 &nbsp;·&nbsp; ข้อมูลส่วนใหญ่ได้จากการสัมภาษณ์ทางโทรศัพท์โดยเพื่อนสูงวัยที่ผ่านการอบรม<br>
+    <svg width="20" height="20" viewBox="0 0 56 56" fill="none" style="vertical-align:middle;margin-right:6px;opacity:.4">
+      <circle cx="21" cy="28" r="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <circle cx="35" cy="28" r="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M28 20 C28 20 24.5 24 24.5 28 C24.5 31 26 33 28 34 C30 33 31.5 31 31.5 28 C31.5 24 28 20 28 20Z" fill="currentColor" opacity="0.5"/>
+    </svg>
+    Kindred Weekly Report &nbsp;·&nbsp; 7–13 เมษายน 2569<br>
+    ข้อมูลส่วนใหญ่ได้จากการสัมภาษณ์ทางโทรศัพท์โดยเพื่อนสูงวัยที่ผ่านการอบรม<br>
     รายงานนี้ใช้เพื่อประกอบการตัดสินใจของครอบครัวเท่านั้น ไม่ใช่การวินิจฉัยทางการแพทย์
   </div>
-
+ 
 </div>
-
+ 
 <script>
 // BP Chart
 new Chart(document.getElementById('bpChart'), {
@@ -738,13 +929,15 @@ new Chart(document.getElementById('bpChart'), {
     labels: ['จ.', '— ', 'พ.', '—', 'ศ.', '—', '—'],
     datasets: [
       { label: 'Systolic', data: [144, null, 156, null, 148, null, null],
-        borderColor: '#EF4444', borderWidth: 2.5, tension: 0.4,
-        pointRadius: [4,0,4,0,4,0,0], spanGaps: false, fill: false },
+        borderColor: '#C9624A', borderWidth: 2.5, tension: 0.4,
+        pointRadius: [5,0,5,0,5,0,0], spanGaps: false, fill: false,
+        pointBackgroundColor: '#C9624A' },
       { label: 'Diastolic', data: [88, null, 94, null, 90, null, null],
-        borderColor: '#F59E0B', borderWidth: 2, tension: 0.4,
-        pointRadius: [4,0,4,0,4,0,0], spanGaps: false, fill: false },
+        borderColor: '#E8895A', borderWidth: 2, tension: 0.4,
+        pointRadius: [4,0,4,0,4,0,0], spanGaps: false, fill: false,
+        pointBackgroundColor: '#E8895A' },
       { label: 'เป้า', data: [140,140,140,140,140,140,140],
-        borderColor: 'rgba(0,0,0,.12)', borderDash: [5,4], borderWidth: 1.5,
+        borderColor: 'rgba(0,0,0,.1)', borderDash: [5,4], borderWidth: 1.5,
         pointRadius: 0, fill: false }
     ]
   },
@@ -754,12 +947,12 @@ new Chart(document.getElementById('bpChart'), {
       tooltip: { callbacks: { title: t => { const d=['จันทร์','—','พุธ','—','ศุกร์','—','—']; return d[t[0].dataIndex]; } } }
     },
     scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-      y: { min: 80, max: 170, ticks: { font: { size: 10 }, stepSize: 30 }, grid: { color: '#F3F4F6' } }
+      x: { grid: { display: false }, ticks: { font: { size: 10, family: 'Prompt' }, color: '#A0A098' } },
+      y: { min: 80, max: 170, ticks: { font: { size: 10 }, stepSize: 30, color: '#A0A098' }, grid: { color: '#F5F4F0' } }
     }
   }
 });
-
+ 
 // Steps Chart
 new Chart(document.getElementById('stepsChart'), {
   type: 'bar',
@@ -769,12 +962,12 @@ new Chart(document.getElementById('stepsChart'), {
       data: [3800, 4200, 1200, 3500, 3900, 4100, 2800],
       backgroundColor: ctx => {
         const v = ctx.raw;
-        return v >= 5000 ? 'rgba(34,197,94,.7)' : v >= 3000 ? 'rgba(245,158,11,.65)' : 'rgba(239,68,68,.65)';
+        return v >= 5000 ? 'rgba(82,165,115,0.75)' : v >= 3000 ? 'rgba(232,137,90,0.7)' : 'rgba(201,98,74,0.7)';
       },
-      borderRadius: 5, borderSkipped: false,
+      borderRadius: 6, borderSkipped: false,
     },
     { type: 'line', data: [5000,5000,5000,5000,5000,5000,5000],
-      borderColor: 'rgba(0,0,0,.15)', borderDash: [4,4], borderWidth: 1.5,
+      borderColor: 'rgba(0,0,0,.12)', borderDash: [4,4], borderWidth: 1.5,
       pointRadius: 0, fill: false }
     ]
   },
@@ -782,8 +975,8 @@ new Chart(document.getElementById('stepsChart'), {
     responsive: true, maintainAspectRatio: false,
     plugins: { legend: { display: false } },
     scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-      y: { min: 0, max: 6000, ticks: { font: { size: 10 }, stepSize: 2000 }, grid: { color: '#F3F4F6' } }
+      x: { grid: { display: false }, ticks: { font: { size: 11, family: 'Prompt' }, color: '#A0A098' } },
+      y: { min: 0, max: 6000, ticks: { font: { size: 10 }, stepSize: 2000, color: '#A0A098' }, grid: { color: '#F5F4F0' } }
     }
   }
 });
