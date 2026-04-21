@@ -2,984 +2,1204 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Kindred — Weekly Report · คุณแม่ สมศรี</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Serif+Thai:wght@400;600&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Noto+Serif+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
+    /* Core palette — warmer, editorial */
     --green:      #52A573;
-    --green-mid:  #74BC90;
-    --green-lt:   #C2E0CC;
-    --green-bg:   #EDF7F1;
     --green-deep: #2F7A50;
+    --green-soft: #C2E0CC;
+    --green-wash: #EDF7F1;
+    --mint:       #68C49A;
+    --mint-wash:  #E6F7EE;
  
     --amber:      #E8895A;
-    --amber-lt:   #F7C9A8;
-    --amber-bg:   #FEF3EC;
     --amber-deep: #C96B38;
+    --amber-wash: #FEF3EC;
+ 
+    --terra:      #C9624A;
+    --terra-wash: #FCEEE9;
  
     --cream:      #F8F6F1;
+    --cream-deep: #F0ECE1;
+    --paper:      #FDFBF5;
     --white:      #FFFFFF;
-    --charcoal:   #1E1E1E;
+ 
+    --ink:        #1A1A1A;
     --body:       #3D3D3D;
     --mid:        #6B6B6B;
     --light:      #A0A098;
+    --faint:      #D4D1C7;
+ 
     --border:     rgba(82,165,115,0.15);
     --border-neu: #EBEBEB;
- 
-    --mint:       #68C49A;
-    --mint-bg:    #E6F7EE;
-    --terra:      #C9624A;
-    --terra-bg:   #FCEEE9;
  
     --font-head:  'Prompt', sans-serif;
     --font-body:  'Prompt', sans-serif;
     --font-quote: 'Noto Serif Thai', serif;
+ 
+    --shadow-sm:  0 1px 2px rgba(30,30,30,0.04);
+    --shadow-md:  0 2px 12px rgba(30,30,30,0.06);
+    --shadow-lg:  0 6px 24px rgba(30,30,30,0.08);
   }
  
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     font-family: var(--font-body);
     background: var(--cream);
     color: var(--body);
     font-size: 15px;
-    line-height: 1.75;
+    line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
  
-  /* ── BANNER ── */
+  /* ── PHONE FRAME (visual only) ── */
+  .phone {
+    max-width: 430px;
+    margin: 0 auto;
+    background: var(--cream);
+    min-height: 100vh;
+    position: relative;
+  }
+ 
+  /* ═══════════════════════════════════════════
+     BANNER — compact, warm
+  ═══════════════════════════════════════════ */
   .banner {
-    background: var(--green);
+    background: linear-gradient(160deg, var(--green) 0%, #478B62 100%);
     position: relative;
     overflow: hidden;
-    padding: 32px 24px 28px;
+    padding: 20px 20px 24px;
   }
   .banner::before {
     content: '';
     position: absolute;
-    top: -120px; right: -120px;
-    width: 400px; height: 400px;
+    top: -80px; right: -90px;
+    width: 280px; height: 280px;
     border-radius: 50%;
-    background: rgba(255,255,255,0.07);
-    pointer-events: none;
+    background: rgba(255,255,255,0.06);
   }
   .banner::after {
     content: '';
     position: absolute;
-    bottom: -80px; left: -40px;
-    width: 280px; height: 280px;
+    bottom: -60px; left: -30px;
+    width: 200px; height: 200px;
     border-radius: 50%;
-    background: rgba(232,137,90,0.22);
-    pointer-events: none;
+    background: rgba(232,137,90,0.18);
   }
   .banner-top {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 18px; position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 14px; position: relative; z-index: 2;
   }
+  .logo-svg { width: 22px; height: 22px; flex-shrink: 0; }
   .banner-logo {
     font-family: var(--font-head);
-    font-size: 14px; font-weight: 600;
-    color: rgba(255,255,255,0.9);
-    letter-spacing: -0.3px;
+    font-size: 13px; font-weight: 600;
+    color: rgba(255,255,255,0.92);
+    letter-spacing: -0.2px;
   }
   .week-pill {
     margin-left: auto;
-    background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.22);
     border-radius: 30px;
-    padding: 4px 14px;
-    font-size: 11px; font-weight: 500;
-    color: rgba(255,255,255,0.8);
-    letter-spacing: 0.3px;
+    padding: 3px 11px;
+    font-size: 10.5px; font-weight: 500;
+    color: rgba(255,255,255,0.88);
+    letter-spacing: 0.2px;
   }
- 
   .patient-card {
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 16px;
-    padding: 18px 20px;
-    display: flex; align-items: center; gap: 16px;
-    backdrop-filter: blur(8px);
     position: relative; z-index: 2;
+    display: flex; align-items: center; gap: 14px;
   }
   .avatar {
-    width: 52px; height: 52px;
+    width: 46px; height: 46px;
     border-radius: 50%;
     background: rgba(255,255,255,0.22);
     display: flex; align-items: center; justify-content: center;
-    font-size: 26px; flex-shrink: 0;
+    font-size: 22px; flex-shrink: 0;
+    border: 1.5px solid rgba(255,255,255,0.3);
   }
+  .pinfo { flex: 1; min-width: 0; }
   .pinfo .name {
     font-family: var(--font-head);
-    font-size: 18px; font-weight: 600;
+    font-size: 16.5px; font-weight: 600;
     color: white; letter-spacing: -0.3px;
+    line-height: 1.25;
   }
-  .pinfo .meta { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
-  .pinfo .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
-  .ptag {
-    background: rgba(255,255,255,0.16);
-    border: 1px solid rgba(255,255,255,0.22);
-    border-radius: 20px;
-    padding: 2px 10px; font-size: 11px; font-weight: 500;
-    color: rgba(255,255,255,0.85);
+  .pinfo .meta {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.72);
+    margin-top: 2px;
+    line-height: 1.4;
   }
-  .score-bubble { margin-left: auto; text-align: center; flex-shrink: 0; }
+  .score-bubble {
+    text-align: center; flex-shrink: 0;
+    padding-left: 8px;
+    border-left: 1px solid rgba(255,255,255,0.18);
+  }
   .score-bubble .num {
     font-family: var(--font-head);
-    font-size: 38px; font-weight: 700;
-    color: white; line-height: 1; letter-spacing: -1px;
+    font-size: 30px; font-weight: 700;
+    color: white; line-height: 1;
+    letter-spacing: -1px;
   }
-  .score-bubble .lbl { font-size: 10px; color: rgba(255,255,255,0.65); margin-top: 3px; }
+  .score-bubble .lbl {
+    font-size: 9px;
+    color: rgba(255,255,255,0.66);
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
  
-  /* ── LAYOUT ── */
-  .main { padding: 20px 18px 48px; max-width: 900px; margin: 0 auto; }
+  /* ═══════════════════════════════════════════
+     MAIN CONTENT
+  ═══════════════════════════════════════════ */
+  .main { padding: 0 16px 40px; }
  
-  .sec-label {
+  /* section header */
+  .sec {
+    margin: 24px 0 12px;
     display: flex; align-items: center; gap: 8px;
-    margin: 28px 0 12px;
   }
-  .sec-label .s-chip {
-    display: inline-flex; align-items: center; gap: 5px;
-    background: var(--green-bg); color: var(--green-deep);
-    border-radius: 30px; padding: 4px 14px;
-    font-size: 11px; font-weight: 600;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-  .sec-label .s-chip.amber { background: var(--amber-bg); color: var(--amber-deep); }
-  .sec-label .s-chip.terra { background: var(--terra-bg); color: var(--terra); }
-  .sec-label .s-chip.neutral { background: white; color: var(--mid); border: 1px solid var(--border-neu); }
- 
-  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-  .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
- 
-  /* ── CARD ── */
-  .card {
-    background: white;
-    border-radius: 18px;
-    border: 1px solid var(--border-neu);
-    padding: 20px 22px;
-    transition: box-shadow .2s;
-  }
-  .card:hover { box-shadow: 0 4px 20px rgba(82,165,115,0.1); }
-  .card-head {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 14px;
-  }
-  .card-ico {
-    width: 34px; height: 34px;
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .card-head h3 {
+  .sec-num {
     font-family: var(--font-head);
-    font-size: 15px; font-weight: 600;
-    color: var(--charcoal); flex: 1;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--light);
+    text-transform: uppercase;
+  }
+  .sec-line {
+    flex: 1;
+    height: 1px;
+    background: var(--faint);
+    opacity: .6;
+  }
+  .sec-title {
+    font-family: var(--font-head);
+    font-size: 14px; font-weight: 600;
+    color: var(--ink);
   }
  
-  /* ── SOURCE BADGE ── */
-  .src {
-    display: inline-flex; align-items: center; gap: 3px;
-    font-size: 10px; font-weight: 600;
-    padding: 2px 8px; border-radius: 20px;
+  /* ═══════════════════════════════════════════
+     ✨ SECTION 1: HERO QUOTES
+  ═══════════════════════════════════════════ */
+  .hero-quotes {
+    margin-top: 22px;
+    background: linear-gradient(180deg, var(--paper) 0%, var(--cream) 100%);
+    border-radius: 22px;
+    padding: 24px 22px 20px;
+    border: 1px solid var(--border);
+    position: relative;
+    box-shadow: var(--shadow-md);
   }
-  .src-call { background: var(--mint-bg); color: var(--green-deep); }
-  .src-device { background: var(--green-bg); color: var(--green-deep); }
-  .src-partial { background: var(--amber-bg); color: var(--amber-deep); }
-  .src-none { background: var(--cream); color: var(--light); border: 1px solid var(--border-neu); }
- 
-  /* ── STATUS CHIPS ── */
-  .chip {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 3px 10px; border-radius: 20px;
-    font-size: 12px; font-weight: 600;
+  .hero-quotes::before {
+    content: '“';
+    position: absolute;
+    top: -8px; left: 18px;
+    font-family: var(--font-quote);
+    font-size: 80px;
+    color: var(--green-soft);
+    line-height: 1;
+    font-weight: 700;
   }
-  .chip-green { background: var(--mint-bg); color: var(--green-deep); }
-  .chip-amber { background: var(--amber-bg); color: var(--amber-deep); }
-  .chip-terra { background: var(--terra-bg); color: var(--terra); }
-  .chip-neutral { background: var(--cream); color: var(--mid); border: 1px solid var(--border-neu); }
- 
-  /* ── SUMMARY BOX ── */
-  .summary-box {
-    background: white;
-    border-radius: 18px;
-    border: 1px solid var(--border-neu);
-    padding: 22px 24px;
-    color: var(--body);
-  }
-  .summary-box .ai-lbl {
-    display: flex; align-items: center; gap: 8px;
-    font-size: 10px; font-weight: 600;
+  .hero-label {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--font-head);
+    font-size: 10.5px; font-weight: 700;
     letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--green-deep); margin-bottom: 14px;
+    color: var(--green-deep);
+    margin-bottom: 18px;
+    margin-left: 32px;
   }
-  .summary-box p {
-    font-size: 14px; line-height: 1.85;
-    color: var(--body); margin-bottom: 10px;
+  .hero-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--green-soft), transparent);
+    margin-left: 6px;
+  }
+ 
+  .q-block { margin-bottom: 18px; }
+  .q-block:last-child { margin-bottom: 0; }
+  .q-text {
+    font-family: var(--font-quote);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: -0.1px;
+  }
+  .q-meta {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px;
+    color: var(--light);
+    margin-top: 6px;
     font-family: var(--font-body);
   }
-  .summary-box p:last-of-type { margin-bottom: 0; }
-  .hi { background: var(--green-bg); border-radius: 5px; padding: 1px 6px; font-weight: 600; color: var(--green-deep); }
-  .hi-warn { background: var(--amber-bg); border-radius: 5px; padding: 1px 6px; font-weight: 600; color: var(--amber-deep); }
-  .hi-good { background: var(--mint-bg); border-radius: 5px; padding: 1px 6px; font-weight: 600; color: var(--green-deep); }
-  .todo-box {
-    margin-top: 16px;
-    background: var(--green-bg);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 14px 18px;
-  }
-  .todo-box .todo-lbl {
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--green-deep); margin-bottom: 8px;
-  }
-  .todo-box div { font-size: 13.5px; color: var(--body); padding: 2px 0; }
+  .q-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--light); }
  
-  /* ── QUOTE ── */
-  .quote-wrap {
-    background: var(--cream);
-    border-left: 3px solid var(--green-lt);
-    border-radius: 0 10px 10px 0;
-    padding: 12px 16px;
-    margin-top: 16px;
+  /* ═══════════════════════════════════════════
+     💡 SECTION 2: AHA — สิ่งที่คุณอาจไม่เคยรู้
+  ═══════════════════════════════════════════ */
+  .aha-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 20px 22px;
+    border: 1px solid var(--border-neu);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
   }
-  .quote-wrap .q-label {
-    font-size: 10px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--light); margin-bottom: 5px;
+  .aha-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--amber) 0%, var(--mint) 100%);
   }
-  .quote-wrap p {
-    font-family: var(--font-quote);
-    font-size: 14px; margin-bottom: 0;
-    color: var(--charcoal);
-  }
- 
-  /* ── SCORE RINGS ── */
-  .rings { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
-  .ring-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .ring-svg { width: 68px; height: 68px; }
-  .ring-lbl {
-    font-size: 12px; font-weight: 500;
-    color: var(--mid); text-align: center; line-height: 1.3;
-  }
-  .ring-status { font-size: 11px; font-weight: 700; }
- 
-  /* ── DATA ROWS ── */
-  .vrow {
-    display: flex; align-items: center; gap: 8px;
-    padding: 9px 0; border-bottom: 1px solid var(--border-neu);
-  }
-  .vrow:last-child { border-bottom: none; }
-  .vrow .vlbl { flex: 1; font-size: 13px; color: var(--mid); }
-  .vrow .vval { font-size: 14px; font-weight: 600; color: var(--charcoal); }
- 
-  .frow {
-    display: flex; align-items: center; gap: 8px;
-    padding: 7px 0; border-bottom: 1px solid var(--border-neu);
-    font-size: 13px;
-  }
-  .frow:last-child { border-bottom: none; }
-  .frow .fico { font-size: 15px; flex-shrink: 0; }
-  .frow .flbl { flex: 1; color: var(--mid); }
-  .flag-y { color: var(--terra); font-weight: 600; }
-  .flag-n { color: var(--green-deep); font-weight: 600; }
-  .flag-u { color: var(--light); font-style: italic; font-size: 12px; }
- 
-  /* ── PROGRESS ── */
-  .prog-wrap { margin-bottom: 10px; }
-  .prog-lbl { display: flex; justify-content: space-between; font-size: 12px; color: var(--mid); margin-bottom: 5px; }
-  .prog-bar { height: 7px; border-radius: 10px; background: var(--border-neu); overflow: hidden; }
-  .prog-fill { height: 100%; border-radius: 10px; }
- 
-  /* ── ALERT ── */
-  .alert {
-    border-radius: 12px; padding: 13px 16px;
-    display: flex; align-items: flex-start; gap: 11px;
-    margin-bottom: 10px;
-  }
-  .alert-terra { background: var(--terra-bg); border-left: 3px solid var(--terra); }
-  .alert-amber { background: var(--amber-bg); border-left: 3px solid var(--amber); }
-  .alert-green { background: var(--mint-bg); border-left: 3px solid var(--mint); }
-  .alert-neutral { background: var(--cream); border-left: 3px solid var(--light); border: 1px solid var(--border-neu); }
-  .alert .aico { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
-  .alert .atitle { font-size: 13.5px; font-weight: 600; color: var(--charcoal); }
-  .alert .adesc { font-size: 12.5px; color: var(--mid); margin-top: 2px; line-height: 1.65; }
- 
-  /* ── CALL LOG ── */
-  .caller-card {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 16px;
-    background: var(--mint-bg);
-    border: 1px solid rgba(104,196,154,0.3);
-    border-radius: 14px;
+  .aha-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--amber-wash);
+    color: var(--amber-deep);
+    border-radius: 20px;
+    padding: 3px 10px 3px 8px;
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
     margin-bottom: 12px;
   }
-  .caller-ava {
-    width: 44px; height: 44px; border-radius: 50%;
-    background: rgba(82,165,115,0.2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
+  .aha-body {
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--ink);
   }
-  .caller-info .cname { font-size: 14px; font-weight: 600; color: var(--green-deep); }
-  .caller-info .cmeta { font-size: 12px; color: var(--green-mid); margin-top: 1px; }
-  .call-stat { margin-left: auto; text-align: right; }
-  .call-stat .cnum { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--green-deep); line-height: 1; }
-  .call-stat .clbl { font-size: 10px; color: var(--green-mid); }
- 
-  .call-log-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 9px 12px; border-radius: 10px;
+  .aha-highlight {
+    background: linear-gradient(transparent 55%, var(--amber-wash) 55%);
+    padding: 0 2px;
+    font-weight: 600;
+  }
+  .callback {
+    margin-top: 14px;
+    padding: 10px 12px;
     background: var(--cream);
-    margin-bottom: 6px; font-size: 13px;
+    border-radius: 10px;
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.6;
+    border-left: 2px solid var(--green-soft);
   }
-  .call-log-row:last-child { margin-bottom: 0; }
-  .call-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
-  .call-day { font-weight: 600; color: var(--green-deep); min-width: 32px; }
-  .call-desc { flex: 1; color: var(--mid); }
-  .call-dur { font-size: 11px; color: var(--light); }
- 
-  /* ── ADL GRID ── */
-  .adl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-  .adl-item {
-    display: flex; align-items: center; gap: 8px;
-    background: var(--cream); border-radius: 10px;
-    padding: 8px 10px; font-size: 12.5px;
+  .callback-ico {
+    color: var(--green-deep);
+    font-weight: 700;
+    flex-shrink: 0;
   }
-  .adl-ico { font-size: 14px; }
-  .adl-lbl { flex: 1; color: var(--mid); }
-  .adl-val { font-weight: 600; font-size: 12px; }
  
-  /* ── MED ── */
-  .med-item {
-    display: flex; align-items: flex-start; gap: 12px;
-    padding: 11px 0; border-bottom: 1px solid var(--border-neu);
+  /* ═══════════════════════════════════════════
+     🗣️ SECTION 3: 3 เรื่องคุยกับแม่
+  ═══════════════════════════════════════════ */
+  .talk-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 20px 20px 18px;
+    border: 1px solid var(--border-neu);
+    box-shadow: var(--shadow-sm);
   }
-  .med-item:last-child { border-bottom: none; }
-  .med-ico { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .med-name { font-size: 13.5px; font-weight: 600; color: var(--charcoal); }
-  .med-dose { font-size: 12px; color: var(--mid); }
-  .med-status { margin-left: auto; font-size: 20px; flex-shrink: 0; }
- 
-  /* ── CHART ── */
-  .chart-wrap { position: relative; height: 130px; }
- 
-  /* ── PAIN DOTS ── */
-  .pain-dots { display: flex; gap: 4px; margin-top: 8px; }
-  .pain-dot {
-    flex: 1; height: 28px; border-radius: 8px;
+  .talk-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 4px;
+  }
+  .talk-head .ico {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: var(--green-wash);
     display: flex; align-items: center; justify-content: center;
-    font-size: 10.5px; font-weight: 700; color: white;
+    font-size: 16px;
+  }
+  .talk-head h3 {
+    font-family: var(--font-head);
+    font-size: 15px; font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .talk-sub {
+    font-size: 11.5px;
+    color: var(--light);
+    margin-bottom: 16px;
+    line-height: 1.5;
   }
  
-  /* ── PHQ BAR ── */
-  .phq-bar { display: flex; height: 10px; border-radius: 10px; overflow: hidden; margin: 10px 0 5px; }
-  .phq-seg { height: 100%; }
- 
-  /* ── DIVIDER ── */
-  .divider { height: 1px; background: var(--border-neu); margin: 12px 0; }
- 
-  /* ── NOTE BOX ── */
-  .note-box {
-    padding: 11px 14px; border-radius: 10px;
-    font-size: 13px; line-height: 1.7;
-    margin-top: 12px;
+  .talk-item {
+    display: flex; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px dashed var(--border-neu);
   }
-  .note-green { background: var(--mint-bg); color: var(--green-deep); }
-  .note-amber { background: var(--amber-bg); color: var(--amber-deep); }
-  .note-terra { background: var(--terra-bg); color: var(--terra); }
-  .note-neutral { background: var(--cream); color: var(--mid); border: 1px solid var(--border-neu); }
+  .talk-item:last-child { border-bottom: none; padding-bottom: 2px; }
+  .talk-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    font-family: var(--font-head);
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .talk-body { flex: 1; }
+  .talk-script {
+    font-family: var(--font-quote);
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .talk-script::before { content: '"'; color: var(--green); font-weight: 700; }
+  .talk-script::after { content: '"'; color: var(--green); font-weight: 700; }
+  .talk-why {
+    margin-top: 6px;
+    font-size: 11.5px;
+    color: var(--mid);
+    line-height: 1.55;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .talk-why::before {
+    content: '→';
+    color: var(--green);
+    font-weight: 700;
+  }
  
-  /* ── FOOTER ── */
+  /* ═══════════════════════════════════════════
+     📈 SECTION 4: TREND STRIP
+  ═══════════════════════════════════════════ */
+  .trend-strip {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 0 8px;
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .trend-strip::-webkit-scrollbar { display: none; }
+ 
+  .trend-chip {
+    flex-shrink: 0;
+    background: var(--white);
+    border: 1px solid var(--border-neu);
+    border-radius: 14px;
+    padding: 10px 14px;
+    min-width: 110px;
+    box-shadow: var(--shadow-sm);
+  }
+  .trend-chip.up { border-top: 2px solid var(--green); }
+  .trend-chip.down { border-top: 2px solid var(--terra); }
+  .trend-chip.flat { border-top: 2px solid var(--faint); }
+  .trend-chip.new { border-top: 2px solid var(--amber); }
+ 
+  .trend-lbl {
+    font-size: 10.5px;
+    color: var(--mid);
+    display: flex; align-items: center; gap: 4px;
+    margin-bottom: 4px;
+  }
+  .trend-val {
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .trend-arrow {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .trend-arrow.up { color: var(--green-deep); }
+  .trend-arrow.down { color: var(--terra); }
+  .trend-arrow.flat { color: var(--light); }
+  .trend-arrow.new { color: var(--amber-deep); }
+  .trend-num {
+    font-family: var(--font-head);
+    font-size: 14.5px; font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+  }
+  .trend-unit {
+    font-size: 10.5px;
+    color: var(--light);
+  }
+ 
+  /* ═══════════════════════════════════════════
+     🎉 SECTION 5: ข่าวดีสัปดาห์นี้
+  ═══════════════════════════════════════════ */
+  .relief-card {
+    background: linear-gradient(135deg, var(--mint-wash) 0%, var(--green-wash) 100%);
+    border-radius: 20px;
+    padding: 20px 22px;
+    border: 1px solid rgba(82,165,115,0.2);
+  }
+  .relief-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 6px;
+  }
+  .relief-head .ico { font-size: 22px; }
+  .relief-head h3 {
+    font-family: var(--font-head);
+    font-size: 15.5px; font-weight: 600;
+    color: var(--green-deep);
+  }
+  .relief-intro {
+    font-size: 12px;
+    color: var(--green-deep);
+    opacity: .75;
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .relief-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0;
+    font-size: 13.5px;
+    color: var(--ink);
+    line-height: 1.55;
+  }
+  .relief-check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--green);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .relief-item .streak {
+    font-size: 10.5px;
+    color: var(--green-deep);
+    background: rgba(255,255,255,0.6);
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-left: 4px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+ 
+  /* ═══════════════════════════════════════════
+     ⚠️ SECTION 6: สิ่งที่ควรรู้
+  ═══════════════════════════════════════════ */
+  .alerts {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .alert {
+    display: flex; align-items: flex-start; gap: 11px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--border-neu);
+  }
+  .alert.terra { background: var(--terra-wash); border-left: 3px solid var(--terra); border-color: rgba(201,98,74,0.15); }
+  .alert.amber { background: var(--amber-wash); border-left: 3px solid var(--amber); border-color: rgba(232,137,90,0.15); }
+  .alert .aico { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+  .alert-body { flex: 1; min-width: 0; }
+  .alert-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .alert-desc {
+    font-size: 11.5px;
+    color: var(--mid);
+    margin-top: 3px;
+    line-height: 1.55;
+  }
+ 
+  /* ═══════════════════════════════════════════
+     📅 SECTION 7: สัปดาห์หน้าของแม่
+  ═══════════════════════════════════════════ */
+  .forward-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 20px 20px 16px;
+    border: 1px solid var(--border-neu);
+    box-shadow: var(--shadow-sm);
+  }
+  .forward-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 16px;
+  }
+  .forward-head .ico {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: var(--amber-wash);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .forward-head h3 {
+    font-family: var(--font-head);
+    font-size: 15px; font-weight: 600;
+    color: var(--ink);
+  }
+ 
+  .timeline {
+    position: relative;
+    padding-left: 4px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 9px; top: 8px; bottom: 8px;
+    width: 1.5px;
+    background: linear-gradient(180deg, var(--amber), var(--green-soft), var(--faint));
+  }
+  .tl-item {
+    display: flex; gap: 14px;
+    padding: 10px 0;
+    position: relative;
+  }
+  .tl-dot {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--amber);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    margin-top: 2px;
+    z-index: 1;
+  }
+  .tl-dot.priority { background: var(--amber); border-color: var(--amber); }
+  .tl-dot.priority::after { content: '!'; color: white; font-weight: 700; font-size: 11px; }
+  .tl-dot.green { border-color: var(--green); }
+  .tl-dot.faint { border-color: var(--faint); }
+  .tl-body { flex: 1; }
+  .tl-date {
+    font-family: var(--font-head);
+    font-size: 11px; font-weight: 600;
+    color: var(--amber-deep);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .tl-dot.green + .tl-body .tl-date { color: var(--green-deep); }
+  .tl-dot.faint + .tl-body .tl-date { color: var(--mid); }
+  .tl-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 2px;
+    line-height: 1.35;
+  }
+  .tl-note {
+    font-size: 11.5px;
+    color: var(--mid);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+ 
+  /* ═══════════════════════════════════════════
+     📊 SECTION 8: SCORE RINGS (with deltas)
+  ═══════════════════════════════════════════ */
+  .rings-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 20px 18px 18px;
+    border: 1px solid var(--border-neu);
+    box-shadow: var(--shadow-sm);
+  }
+  .rings-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .ring-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 4px;
+  }
+  .ring-svg { width: 56px; height: 56px; flex-shrink: 0; }
+  .ring-info { min-width: 0; }
+  .ring-name {
+    font-size: 12px;
+    color: var(--mid);
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .ring-status {
+    font-size: 11.5px;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .ring-delta {
+    display: inline-flex; align-items: center;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 4px;
+    padding: 1px 5px;
+    border-radius: 8px;
+    background: var(--cream);
+    color: var(--mid);
+  }
+  .ring-delta.up { background: var(--green-wash); color: var(--green-deep); }
+  .ring-delta.down { background: var(--terra-wash); color: var(--terra); }
+ 
+  /* ═══════════════════════════════════════════
+     VITALS mini
+  ═══════════════════════════════════════════ */
+  .vitals-mini {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 18px 20px;
+    border: 1px solid var(--border-neu);
+    box-shadow: var(--shadow-sm);
+  }
+  .v-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-neu);
+  }
+  .v-row:last-child { border-bottom: none; }
+  .v-ico {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .v-lbl {
+    flex: 1;
+    font-size: 12.5px;
+    color: var(--mid);
+  }
+  .v-val {
+    font-family: var(--font-head);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .v-trend {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 6px;
+    white-space: nowrap;
+  }
+  .v-trend.up { background: var(--green-wash); color: var(--green-deep); }
+  .v-trend.down { background: var(--terra-wash); color: var(--terra); }
+  .v-trend.flat { background: var(--cream); color: var(--mid); }
+ 
+  /* ═══════════════════════════════════════════
+     CTA — tap to open full dashboard
+  ═══════════════════════════════════════════ */
+  .cta {
+    margin-top: 24px;
+    background: var(--white);
+    border: 1.5px dashed var(--green-soft);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .cta-ico {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--green-wash);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .cta-body { flex: 1; }
+  .cta-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--ink);
+  }
+  .cta-sub {
+    font-size: 11px;
+    color: var(--mid);
+    margin-top: 1px;
+  }
+  .cta-arrow {
+    font-size: 18px;
+    color: var(--green);
+  }
+ 
+  /* ═══════════════════════════════════════════
+     FOOTER
+  ═══════════════════════════════════════════ */
   .footnote {
-    text-align: center; font-size: 11.5px; color: var(--light);
-    padding: 24px 0 8px; line-height: 1.8;
+    text-align: center;
+    font-size: 11px;
+    color: var(--light);
+    padding: 28px 20px 16px;
+    line-height: 1.75;
+  }
+  .footnote-logo {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-bottom: 8px;
+    opacity: 0.6;
   }
  
-  @media (max-width: 580px) {
-    .rings, .g4 { grid-template-columns: 1fr 1fr; }
-    .g3 { grid-template-columns: 1fr 1fr; }
-    .g2 { grid-template-columns: 1fr; }
+  /* Subtle entrance animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
   }
+  .hero-quotes, .aha-card, .talk-card, .trend-strip, .relief-card, .forward-card, .rings-card, .vitals-mini, .alerts {
+    animation: fadeUp 0.6s ease-out backwards;
+  }
+  .hero-quotes { animation-delay: 0.05s; }
+  .aha-card { animation-delay: 0.12s; }
+  .talk-card { animation-delay: 0.18s; }
+  .trend-strip { animation-delay: 0.22s; }
+  .relief-card { animation-delay: 0.26s; }
+  .alerts { animation-delay: 0.30s; }
+  .forward-card { animation-delay: 0.34s; }
+  .rings-card { animation-delay: 0.38s; }
+  .vitals-mini { animation-delay: 0.42s; }
 </style>
 </head>
 <body>
  
-<!-- ── BANNER ── -->
-<div class="banner">
-  <div class="banner-top">
-    <svg width="24" height="24" viewBox="0 0 56 56" fill="none">
-      <circle cx="21" cy="28" r="15" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
-      <circle cx="35" cy="28" r="15" fill="rgba(232,137,90,0.25)" stroke="rgba(255,255,255,0.3)" stroke-width="1.2"/>
-      <path d="M28 20 C28 20 24.5 24 24.5 28 C24.5 31 26 33 28 34 C30 33 31.5 31 31.5 28 C31.5 24 28 20 28 20Z" fill="white" opacity="0.75"/>
-    </svg>
-    <span class="banner-logo">Kindred</span>
-    <span class="week-pill">สัปดาห์ที่ 15 / 2569</span>
-  </div>
-  <div class="patient-card">
-    <div class="avatar">👩‍🦳</div>
-    <div class="pinfo">
-      <div class="name">คุณแม่ สมศรี รักสุขภาพ</div>
-      <div class="meta">อายุ 72 ปี · เบาหวาน T2 + ความดันโลหิตสูง · อยู่บ้านกับสามีที่อุดรฯ</div>
-      <div class="tags">
-        <span class="ptag">📞 ติดตาม 3 ครั้ง/สัปดาห์</span>
-        <span class="ptag">⌚ BP Cuff + Pedometer</span>
+<div class="phone">
+ 
+  <!-- ═══════════════════════════════════════════
+       BANNER
+  ═══════════════════════════════════════════ -->
+  <div class="banner">
+    <div class="banner-top">
+      <svg class="logo-svg" viewBox="0 0 56 56" fill="none">
+        <circle cx="21" cy="28" r="15" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
+        <circle cx="35" cy="28" r="15" fill="rgba(232,137,90,0.28)" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
+        <path d="M28 20 C28 20 24.5 24 24.5 28 C24.5 31 26 33 28 34 C30 33 31.5 31 31.5 28 C31.5 24 28 20 28 20Z" fill="white" opacity="0.8"/>
+      </svg>
+      <span class="banner-logo">Kindred</span>
+      <span class="week-pill">สัปดาห์ 15 · 7–13 เม.ย. 69</span>
+    </div>
+    <div class="patient-card">
+      <div class="avatar">👩‍🦳</div>
+      <div class="pinfo">
+        <div class="name">คุณแม่ สมศรี รักสุขภาพ</div>
+        <div class="meta">72 ปี · อุดรธานี · โทรคุย 3 ครั้ง (~52 นาที)</div>
       </div>
-    </div>
-    <div class="score-bubble">
-      <div class="num">72</div>
-      <div class="lbl">คะแนนรวม<br>สัปดาห์นี้</div>
-    </div>
-  </div>
-</div>
- 
-<div class="main">
- 
-  <!-- ── AI SUMMARY ── -->
-  <div class="sec-label">
-    <span class="s-chip">✨ สรุปสัปดาห์นี้</span>
-  </div>
-  <div class="summary-box">
-    <div class="ai-lbl">
-      <span>🌿</span> Kindred AI · 7–13 เมษายน 2569
-    </div>
-    <p>
-      สัปดาห์นี้ป้าสมหมาย (เพื่อนสูงวัย) โทรหาคุณแม่ 3 ครั้ง รวมเวลา ~52 นาที จากการสนทนา คุณแม่บอกว่า <span class="hi-warn">ปวดเข่าซ้ายมากขึ้นช่วงกลางสัปดาห์</span> และ <span class="hi-warn">รู้สึกเหนื่อยใจ เบื่อนิดหน่อย</span> ซึ่งสอดคล้องกับคะแนน PHQ-2 ที่ได้ 3 คะแนน ลองโทรถามดูนะคะ
-    </p>
-    <p>
-      ด้านร่างกาย — <span class="hi-warn">ความดันสูงกว่าปกติ 2 ใน 3 วันที่วัด</span> (สูงสุด 156/94) และ <span class="hi-warn">ลืมกินยาเบาหวานไป 2 ครั้ง</span> เพราะสับสนมื้อเช้ากับเที่ยง น่าแจ้งแพทย์วันนัด 22 เม.ย. นี้
-    </p>
-    <p>
-      ข่าวดี — <span class="hi-good">ไม่มีการล้มสัปดาห์นี้เลย</span>, ยังทำกับข้าวและงานบ้านได้เอง, <span class="hi-good">ความจำและการรับรู้อยู่ในเกณฑ์ปกติ</span>
-    </p>
- 
-    <div class="quote-wrap">
-      <div class="q-label">🗣️ คุณแม่พูดว่า</div>
-      <p>"สัปดาห์นี้แม่พูดถึงหลานชายบ่อยมาก ฝากบอกว่าอยากคุยด้วยนะ 🌸"</p>
-    </div>
- 
-    <div class="todo-box">
-      <div class="todo-lbl">📌 สิ่งที่ลูกหลานควรทำสัปดาห์นี้</div>
-      <div>① โทรหรือไปเยี่ยม — ถามเรื่องอารมณ์และความเหนื่อยใจ</div>
-      <div>② เตือนยา Metformin มื้อเช้าก่อนอาหาร (ตั้งนาฬิกาให้)</div>
-      <div>③ เตรียมคำถามพาไปหาหมอ 22 เม.ย. เรื่องความดัน + เข่า</div>
-      <div>④ เช็คของกีดขวางในบ้าน (บันไดลื่น) ที่แจ้งไว้</div>
-    </div>
-  </div>
- 
-  <!-- ── SCORE RINGS ── -->
-  <div class="sec-label">
-    <span class="s-chip neutral">📊 ภาพรวมสัปดาห์</span>
-  </div>
-  <div class="card">
-    <div class="rings">
-      <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 68 68">
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#E8895A" stroke-width="7"
-            stroke-dasharray="124 52" stroke-dashoffset="44" stroke-linecap="round"/>
-          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#E8895A" font-family="Prompt,sans-serif">70</text>
-        </svg>
-        <div class="ring-lbl">สุขภาพกาย</div>
-        <div class="ring-status" style="color:var(--amber-deep)">พอใช้</div>
-      </div>
-      <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 68 68">
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#52A573" stroke-width="7"
-            stroke-dasharray="145 31" stroke-dashoffset="44" stroke-linecap="round"/>
-          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#52A573" font-family="Prompt,sans-serif">82</text>
-        </svg>
-        <div class="ring-lbl">ความปลอดภัย</div>
-        <div class="ring-status" style="color:var(--green-deep)">ดี</div>
-      </div>
-      <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 68 68">
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#C9624A" stroke-width="7"
-            stroke-dasharray="83 93" stroke-dashoffset="44" stroke-linecap="round"/>
-          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#C9624A" font-family="Prompt,sans-serif">47</text>
-        </svg>
-        <div class="ring-lbl">สุขภาพจิต</div>
-        <div class="ring-status" style="color:var(--terra)">ต้องดูแล</div>
-      </div>
-      <div class="ring-item">
-        <svg class="ring-svg" viewBox="0 0 68 68">
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#EBEBEB" stroke-width="7"/>
-          <circle cx="34" cy="34" r="28" fill="none" stroke="#74BC90" stroke-width="7"
-            stroke-dasharray="132 44" stroke-dashoffset="44" stroke-linecap="round"/>
-          <text x="34" y="39" text-anchor="middle" font-size="15" font-weight="700" fill="#52A573" font-family="Prompt,sans-serif">75</text>
-        </svg>
-        <div class="ring-lbl">การดูแลตัวเอง</div>
-        <div class="ring-status" style="color:var(--green-deep)">ดี</div>
+      <div class="score-bubble">
+        <div class="num">72</div>
+        <div class="lbl">รวม</div>
       </div>
     </div>
   </div>
  
-  <!-- ── ALERTS ── -->
-  <div class="sec-label">
-    <span class="s-chip amber">⚠️ สิ่งที่ควรรู้สัปดาห์นี้</span>
-  </div>
-  <div class="alert alert-terra">
-    <div class="aico">❤️</div>
-    <div>
-      <div class="atitle">ความดันสูงกว่าปกติ</div>
-      <div class="adesc">วัดได้ 144/88, 156/94, 148/90 — 2 ใน 3 วันเกินเป้า อาจปรับยาตอนไปหาหมอ 22 เม.ย.</div>
-    </div>
-  </div>
-  <div class="alert alert-amber">
-    <div class="aico">💊</div>
-    <div>
-      <div class="atitle">ลืมกินยาเบาหวาน 2 ครั้ง</div>
-      <div class="adesc">Metformin มื้อเช้า — แม่บอกสับสนมื้อเช้ากับเที่ยง ลองตั้งนาฬิกาปลุกให้แม่ดีมั้ยคะ?</div>
-    </div>
-  </div>
-  <div class="alert alert-amber">
-    <div class="aico">😔</div>
-    <div>
-      <div class="atitle">อารมณ์เหนื่อยใจนิดหน่อย</div>
-      <div class="adesc">PHQ-2 ได้ 3 คะแนน · แม่บอกว่าเบื่อนิดหน่อย คิดถึงลูกหลาน</div>
-    </div>
-  </div>
-  <div class="alert alert-green">
-    <div class="aico">🎉</div>
-    <div>
-      <div class="atitle">ไม่มีการล้มสัปดาห์นี้เลย</div>
-      <div class="adesc">แม่บอกว่าระวังตัวมากขึ้นเองเลย · ข่าวดีมากค่ะ!</div>
-    </div>
-  </div>
+  <div class="main">
  
-  <!-- ── CALL LOG ── -->
-  <div class="sec-label">
-    <span class="s-chip">📞 การพูดคุยสัปดาห์นี้</span>
-  </div>
-  <div class="card">
-    <div class="caller-card">
-      <div class="caller-ava">👵</div>
-      <div class="caller-info">
-        <div class="cname">ป้าสมหมาย</div>
-        <div class="cmeta">เพื่อนสูงวัย · ผ่านการอบรม Kindred</div>
-      </div>
-      <div class="call-stat">
-        <div class="cnum">3</div>
-        <div class="clbl">ครั้ง / ~52 นาที</div>
-      </div>
-    </div>
-    <div class="call-log-row">
-      <div class="call-dot"></div>
-      <div class="call-day">จ.</div>
-      <div class="call-desc">สอบถามทั่วไป · สุขภาพกาย อาหาร ยา · อารมณ์ดี</div>
-      <div class="call-dur">~18 นาที</div>
-    </div>
-    <div class="call-log-row">
-      <div class="call-dot"></div>
-      <div class="call-day">พ.</div>
-      <div class="call-desc">แม่เล่าเรื่องเข่าปวด · PHQ-2 · ความดัน · ยา</div>
-      <div class="call-dur">~22 นาที</div>
-    </div>
-    <div class="call-log-row">
-      <div class="call-dot"></div>
-      <div class="call-day">ศ.</div>
-      <div class="call-desc">ติดตามอาการเข่า · นัดหมาย 22 เม.ย. · เรื่องยาใกล้หมด</div>
-      <div class="call-dur">~12 นาที</div>
-    </div>
-  </div>
+    <!-- ═══════════════════════════════════════════
+         ① HERO QUOTES
+    ═══════════════════════════════════════════ -->
+    <div class="hero-quotes">
+      <div class="hero-label">✨ เสียงจากแม่สัปดาห์นี้</div>
  
-  <!-- ── VITALS ── -->
-  <div class="sec-label">
-    <span class="s-chip neutral">💓 สัญญาณชีพ & ร่างกาย</span>
-  </div>
-  <div class="g2">
-    <!-- BP -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--terra-bg)">❤️</div>
-        <h3>ความดันโลหิต</h3>
-        <span class="src src-device">⌚ วัดเอง</span>
-      </div>
-      <div class="chart-wrap">
-        <canvas id="bpChart"></canvas>
-      </div>
-      <div class="vrow" style="margin-top:8px">
-        <div class="vlbl">สูงสุดสัปดาห์นี้</div>
-        <div class="vval" style="color:var(--terra)">156 / 94</div>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">เป้าหมาย</div>
-        <div class="vval" style="color:var(--mid)">≤ 140 / 90</div>
-      </div>
-      <div class="note-box note-terra">⚠️ เกินเป้าหมาย 2 ใน 3 วันที่วัด — แจ้งแพทย์ 22 เม.ย.</div>
-    </div>
- 
-    <!-- Steps -->
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--green-bg)">🦶</div>
-        <h3>ก้าวเดิน / วัน</h3>
-        <span class="src src-device">⌚ Pedometer</span>
-      </div>
-      <div class="chart-wrap">
-        <canvas id="stepsChart"></canvas>
-      </div>
-      <div class="vrow" style="margin-top:8px">
-        <div class="vlbl">เฉลี่ย / วัน</div>
-        <div class="vval" style="color:var(--amber-deep)">3,357 ก้าว</div>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">เป้าหมาย</div>
-        <div class="vval" style="color:var(--mid)">5,000 ก้าว</div>
-      </div>
-      <div class="note-box note-amber">ต่ำกว่าเป้า — วันพุธน้อยมาก เข่าปวด แม่บอกเองค่ะ</div>
-    </div>
-  </div>
- 
-  <!-- Vitals other -->
-  <div class="g3" style="margin-top:14px">
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--amber-bg)">🌡️</div>
-        <h3>น้ำหนัก & BMI</h3>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">น้ำหนัก</div>
-        <div class="vval">62 กก.</div>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">BMI</div>
-        <div class="vval" style="color:var(--amber-deep)">25.4</div>
-        <span class="chip chip-amber" style="font-size:11px">น้ำหนักเกินเล็กน้อย</span>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">น้ำหนักเปลี่ยน (30 วัน)</div>
-        <div class="vval" style="color:var(--green-deep)">ไม่เปลี่ยน</div>
-      </div>
-      <div style="font-size:11px;color:var(--light);margin-top:8px">📞 ถามทางโทรศัพท์ ไม่ได้ชั่งจริง</div>
-    </div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--terra-bg)">🔥</div>
-        <h3>ปวด (NRS)</h3>
-      </div>
-      <div style="font-size:11px;color:var(--light);margin-bottom:8px">📞 ถาม · 0–10 คะแนน</div>
-      <div class="pain-dots">
-        <div class="pain-dot" style="background:var(--green)">จ<br><span style="font-size:9px">1</span></div>
-        <div class="pain-dot" style="background:var(--border-neu);color:var(--mid)">อ<br><span style="font-size:9px">—</span></div>
-        <div class="pain-dot" style="background:var(--terra)">พ<br><span style="font-size:9px">4</span></div>
-        <div class="pain-dot" style="background:var(--border-neu);color:var(--mid)">พฤ<br><span style="font-size:9px">—</span></div>
-        <div class="pain-dot" style="background:var(--amber)">ศ<br><span style="font-size:9px">3</span></div>
-        <div class="pain-dot" style="background:var(--green)">ส<br><span style="font-size:9px">—</span></div>
-        <div class="pain-dot" style="background:var(--light)">อา<br><span style="font-size:9px">?</span></div>
-      </div>
-      <div class="vrow" style="margin-top:12px">
-        <div class="vlbl">เข่าซ้าย (ปวดสูงสุด)</div>
-        <div class="vval" style="color:var(--terra)">NRS 4/10</div>
-      </div>
-      <div style="font-size:11px;color:var(--light);margin-top:4px">ส-อา ไม่มีการโทร — ไม่มีข้อมูล</div>
-    </div>
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--mint-bg)">⚖️</div>
-        <h3>ความเสี่ยงล้ม</h3>
-      </div>
-      <div style="font-size:11px;color:var(--light);margin-bottom:8px">📞 ถาม · TUG วัดทุกเดือน</div>
-      <div class="vrow">
-        <div class="vlbl">ล้ม ใน 90 วัน</div>
-        <div class="vval" style="color:var(--green-deep)">1 ครั้ง</div>
-        <span class="chip chip-green" style="font-size:11px">ดี</span>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">กลัวล้ม</div>
-        <div class="vval" style="color:var(--amber-deep)">6/10</div>
-        <span class="chip chip-amber" style="font-size:11px">ปานกลาง</span>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">เวียนหัวตอนลุก</div>
-        <div class="vval" style="color:var(--amber-deep)">มีบ้าง</div>
-      </div>
-      <div class="note-box note-neutral" style="font-size:12px">TUG / gait_speed: นัดวัด 22 เม.ย. ที่ รพ.สต.</div>
-    </div>
-  </div>
- 
-  <!-- ── MENTAL HEALTH ── -->
-  <div class="sec-label">
-    <span class="s-chip amber">🧠 สุขภาพจิต & อารมณ์</span>
-  </div>
-  <div class="g2">
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--amber-bg)">💛</div>
-        <h3>PHQ-9 อารมณ์</h3>
-        <span class="src src-call">📞 ถาม</span>
-      </div>
-      <div style="text-align:center;padding:8px 0 4px">
-        <span style="font-family:var(--font-head);font-size:36px;font-weight:700;color:var(--amber-deep)">8</span>
-        <span style="font-size:14px;color:var(--light)">/27</span>
-        <div style="margin-top:5px"><span class="chip chip-amber">ระดับเล็กน้อย</span></div>
-      </div>
-      <div class="phq-bar">
-        <div class="phq-seg" style="width:30%;background:var(--green)"></div>
-        <div class="phq-seg" style="width:19%;background:var(--amber)"></div>
-        <div class="phq-seg" style="width:51%;background:var(--border-neu)"></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--light);margin-bottom:10px">
-        <span>0 ปกติ</span><span>5</span><span>10</span><span>15</span><span>27</span>
-      </div>
-      <div class="divider"></div>
-      <div class="vrow">
-        <div class="vlbl">อารมณ์ (PHQ-2 mood)</div>
-        <div class="vval">2/3</div><span class="chip chip-amber" style="font-size:11px">เศร้าบ้าง</span>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">ความสนใจ (PHQ-2 interest)</div>
-        <div class="vval">1/3</div><span class="chip chip-green" style="font-size:11px">พอใช้</span>
-      </div>
-      <div class="vrow">
-        <div class="vlbl">ความพอใจชีวิต</div>
-        <div class="vval">6/10</div>
-      </div>
-    </div>
- 
-    <div class="card">
-      <div class="card-head">
-        <div class="card-ico" style="background:var(--green-bg)">🧩</div>
-        <h3>ความจำ & การรับรู้</h3>
-        <span class="src src-call">📞 ถาม</span>
-      </div>
-      <div style="font-size:11.5px;color:var(--light);margin-bottom:10px">คำถามสั้นๆ ทางโทรศัพท์ · ไม่ใช่ MMSE เต็ม</div>
-      <div class="frow"><div class="fico">📅</div><div class="flbl">รู้วันที่วันนี้</div><div class="flag-n">✓ ได้</div></div>
-      <div class="frow"><div class="fico">📍</div><div class="flbl">รู้ว่าอยู่ที่ไหน</div><div class="flag-n">✓ ได้</div></div>
-      <div class="frow">
-        <div class="fico">💭</div>
-        <div class="flbl">จำคำ 3 คำ (recall_3word)</div>
-        <div class="vval">2/3</div>
-      </div>
-      <div class="frow"><div class="fico">😟</div><div class="flbl">บ่นเรื่องความจำ</div><div class="flag-y">มีบ้าง</div></div>
-      <div class="frow"><div class="fico">💊</div><div class="flbl">จำชื่อยาตัวเองได้</div><div class="flag-y">ได้บางตัว</div></div>
-      <div class="note-box note-neutral" style="font-size:12.5px">
-        <strong>หมายเหตุ:</strong> คะแนน cognitive เป็นการประเมินเบื้องต้นทางโทรศัพท์เท่านั้น
-      </div>
-    </div>
-  </div>
- 
-  <!-- ── ADL / IADL ── -->
-  <div class="sec-label">
-    <span class="s-chip neutral">🚶‍♀️ การดูแลตนเองในชีวิตประจำวัน</span>
-  </div>
-  <div class="card">
-    <div style="font-size:11.5px;color:var(--light);margin-bottom:14px">📞 ถามโดยเพื่อนสูงวัย · คุณแม่ตอบเองทางโทรศัพท์</div>
-    <div class="g2">
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--light);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">ADL — กิจวัตรพื้นฐาน</div>
-        <div class="adl-grid">
-          <div class="adl-item"><div class="adl-ico">🛁</div><div class="adl-lbl">อาบน้ำ</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">👗</div><div class="adl-lbl">แต่งตัว</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">🚽</div><div class="adl-lbl">ห้องน้ำ</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">🪑</div><div class="adl-lbl">ลุกนั่ง</div><div class="adl-val" style="color:var(--amber-deep)">ช้าลง</div></div>
-          <div class="adl-item"><div class="adl-ico">🍽️</div><div class="adl-lbl">กินอาหาร</div><div class="adl-val" style="color:var(--green-deep)">✓ เอง</div></div>
-          <div class="adl-item"><div class="adl-ico">💧</div><div class="adl-lbl">กลั้นปัสสาวะ</div><div class="adl-val" style="color:var(--amber-deep)">บางครั้ง</div></div>
+      <div class="q-block">
+        <div class="q-text">ฝากบอกหลานชายว่าอยากคุยด้วยนะ คิดถึงเสียงเขา</div>
+        <div class="q-meta">
+          <span>พุธ</span><span class="dot"></span><span>คุยเรื่องลูกหลาน</span>
         </div>
       </div>
-      <div>
-        <div style="font-size:11px;font-weight:700;color:var(--light);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">IADL — ทักษะอิสระ</div>
-        <div class="adl-grid">
-          <div class="adl-item"><div class="adl-ico">📞</div><div class="adl-lbl">ใช้โทรศัพท์</div><div class="adl-val" style="color:var(--green-deep)">✓ ได้</div></div>
-          <div class="adl-item"><div class="adl-ico">🛒</div><div class="adl-lbl">ซื้อของ</div><div class="adl-val" style="color:var(--amber-deep)">ต้องพา</div></div>
-          <div class="adl-item"><div class="adl-ico">🍳</div><div class="adl-lbl">ทำอาหาร</div><div class="adl-val" style="color:var(--green-deep)">✓ ได้</div></div>
-          <div class="adl-item"><div class="adl-ico">🧹</div><div class="adl-lbl">งานบ้าน</div><div class="adl-val" style="color:var(--green-deep)">✓ ได้</div></div>
-          <div class="adl-item"><div class="adl-ico">💊</div><div class="adl-lbl">ดูแลยา</div><div class="adl-val" style="color:var(--terra)">ลืมบ้าง</div></div>
-          <div class="adl-item"><div class="adl-ico">💰</div><div class="adl-lbl">จัดการเงิน</div><div class="adl-val" style="color:var(--amber-deep)">ต้องช่วย</div></div>
+ 
+      <div class="q-block">
+        <div class="q-text">แกงเขียวหวานวันอาทิตย์ แม่ทำเองนะ พ่อบอกอร่อยที่สุดในรอบปี</div>
+        <div class="q-meta">
+          <span>จันทร์</span><span class="dot"></span><span>เล่าเรื่องอาหาร · ภูมิใจ</span>
+        </div>
+      </div>
+ 
+      <div class="q-block">
+        <div class="q-text">เข่าดีขึ้นวันละนิดแล้ว อย่าห่วงนะ แม่ระวังตัวเอง</div>
+        <div class="q-meta">
+          <span>ศุกร์</span><span class="dot"></span><span>ตอบเรื่องอาการ · ปลอบลูก</span>
         </div>
       </div>
     </div>
-    <div style="margin-top:16px">
-      <div class="prog-wrap">
-        <div class="prog-lbl"><span>ADL (Barthel ประเมิน)</span><span style="font-weight:600;color:var(--green-deep)">88%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:88%;background:var(--green)"></div></div>
-      </div>
-      <div class="prog-wrap" style="margin-bottom:0">
-        <div class="prog-lbl"><span>IADL (Lawton ประเมิน)</span><span style="font-weight:600;color:var(--amber-deep)">62%</span></div>
-        <div class="prog-bar"><div class="prog-fill" style="width:62%;background:var(--amber)"></div></div>
-      </div>
-    </div>
-  </div>
  
-  <!-- ── MEDICATION ── -->
-  <div class="sec-label">
-    <span class="s-chip amber">💊 ยาและการกินยา</span>
-  </div>
-  <div class="card">
-    <div class="card-head">
-      <div class="card-ico" style="background:var(--mint-bg)">💊</div>
-      <h3>รายการยาประจำ</h3>
-      <span class="src src-call">📞 ถาม</span>
+    <!-- ═══════════════════════════════════════════
+         ② AHA — สิ่งที่คุณอาจไม่เคยรู้
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">02</span>
+      <span class="sec-title">สิ่งที่คุณอาจไม่เคยรู้</span>
+      <span class="sec-line"></span>
     </div>
-    <div style="font-size:11.5px;color:var(--light);margin-bottom:12px">adherence_missed_doses = 2 ครั้ง · ลืมกิน ไม่ใช่ไม่ต้องการกิน</div>
-    <div class="prog-wrap">
-      <div class="prog-lbl"><span>อัตรากินยาสัปดาห์นี้</span><span style="font-weight:600;color:var(--amber-deep)">79%</span></div>
-      <div class="prog-bar"><div class="prog-fill" style="width:79%;background:var(--amber)"></div></div>
-    </div>
-    <div class="med-item">
-      <div class="med-ico">💙</div>
-      <div>
-        <div class="med-name">Metformin 500 mg</div>
-        <div class="med-dose">เช้า + เย็น · เบาหวาน · <strong style="color:var(--terra)">ลืม 2 ครั้ง</strong></div>
+    <div class="aha-card">
+      <span class="aha-badge">💡 เจอใหม่สัปดาห์นี้</span>
+      <div class="aha-body">
+        แม่เล่าถึง <span class="aha-highlight">"ป้ามาลี"</span> เพื่อนสมัยสาวที่สอนแม่เย็บผ้าตอนอายุ 18 เคยคิดจะเปิดร้านตัดเสื้อด้วยกันแถวตลาดเก่า — แม่บอกว่าได้ข่าวจากญาติห่างๆ ว่าป้ามาลีย้ายไปอยู่ขอนแก่นแล้ว อยากเจออีกสักครั้ง
       </div>
-      <div class="med-status">⚠️</div>
-    </div>
-    <div class="med-item">
-      <div class="med-ico">❤️</div>
-      <div>
-        <div class="med-name">Amlodipine 5 mg</div>
-        <div class="med-dose">เช้า 1 เม็ด · ความดัน</div>
+      <div class="callback">
+        <span class="callback-ico">↩</span>
+        <span>
+          <strong>ต่อจากสัปดาห์ 14:</strong> แม่เคยพูดถึงช่วงทำงานที่ร้านตัดเสื้อตอนสาวๆ — ครั้งนี้เล่าชื่อเพื่อนร่วมงานครั้งแรก
+        </span>
       </div>
-      <div class="med-status">✅</div>
     </div>
-    <div class="med-item">
-      <div class="med-ico">🟠</div>
-      <div>
-        <div class="med-name">Atorvastatin 10 mg</div>
-        <div class="med-dose">ก่อนนอน · ไขมัน</div>
-      </div>
-      <div class="med-status">✅</div>
-    </div>
-    <div class="med-item">
-      <div class="med-ico">🌿</div>
-      <div>
-        <div class="med-name">ฟ้าทะลายโจร (สมุนไพร)</div>
-        <div class="med-dose">otc_herbal · ซื้อเองจากตลาด · กินเป็นครั้งคราว</div>
-      </div>
-      <div class="med-status">ℹ️</div>
-    </div>
-    <div class="note-box note-terra" style="margin-top:10px">
-      <strong>⚠️ med_access_flag:</strong> ยาใกล้หมด ยังไม่ได้ไปรับ — <em>"รอลูกพาไป ไม่มีรถ"</em>
-    </div>
-  </div>
  
-  <!-- ── NUTRITION ── -->
-  <div class="sec-label">
-    <span class="s-chip neutral">🥗 โภชนาการ (MNA Screening)</span>
-  </div>
-  <div class="card">
-    <div style="font-size:11.5px;color:var(--light);margin-bottom:12px">📞 ถามทางโทรศัพท์ · ประเมินเบื้องต้นเท่านั้น</div>
-    <div class="g2">
-      <div>
-        <div class="frow"><div class="fico">🍽️</div><div class="flbl">เบื่ออาหารสัปดาห์นี้</div><div class="flag-y">มีบ้าง</div></div>
-        <div class="frow"><div class="fico">⚖️</div><div class="flbl">น้ำหนักลด (3 เดือน)</div><div class="flag-n">ไม่ลด</div></div>
-        <div class="frow"><div class="fico">🚶</div><div class="flbl">เคลื่อนไหวได้</div><div class="flag-n">✓ ได้</div></div>
-      </div>
-      <div>
-        <div class="frow"><div class="fico">🤒</div><div class="flbl">ป่วย/เครียดเฉียบพลัน</div><div class="flag-n">ไม่มี</div></div>
-        <div class="frow"><div class="fico">🥗</div><div class="flbl">อาหารพอกิน</div><div class="flag-n">✓ พอ</div></div>
-        <div class="frow"><div class="fico">🥩</div><div class="flbl">กินโปรตีนพอ</div><div class="flag-u">ไม่แน่ใจ</div></div>
-      </div>
+    <!-- ═══════════════════════════════════════════
+         ③ 3 เรื่องคุยกับแม่
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">03</span>
+      <span class="sec-title">3 เรื่องคุยกับแม่สัปดาห์นี้</span>
+      <span class="sec-line"></span>
     </div>
-    <div class="prog-wrap" style="margin-top:12px;margin-bottom:0">
-      <div class="prog-lbl"><span>MNA-SF รวม (ประเมิน)</span><span style="font-weight:600;color:var(--amber-deep)">10/14 — เสี่ยงเล็กน้อย</span></div>
-      <div class="prog-bar"><div class="prog-fill" style="width:71%;background:var(--amber)"></div></div>
-    </div>
-  </div>
+    <div class="talk-card">
+      <div class="talk-head">
+        <div class="ico">🗣️</div>
+        <h3>พร้อมใช้โทรได้เลย</h3>
+      </div>
+      <div class="talk-sub">3 คำถามที่เราคัดมาจากบทสนทนาสัปดาห์นี้ — แม่จะมีเรื่องเล่าต่อแน่นอน</div>
  
-  <!-- ── SOCIAL & SAFETY ── -->
-  <div class="sec-label">
-    <span class="s-chip neutral">🏠 สังคม & ความปลอดภัย</span>
-  </div>
-  <div class="card">
-    <div style="font-size:11.5px;color:var(--light);margin-bottom:12px">📞 ถามทางโทรศัพท์ · บางข้อมูลจากการเยี่ยมบ้านครั้งล่าสุด (3 สัปดาห์ก่อน)</div>
-    <div class="g2">
-      <div>
-        <div class="frow"><div class="fico">👨‍👩‍👧</div><div class="flbl">อยู่กับ</div><div style="font-size:12.5px;font-weight:600;color:var(--green-deep)">สามี</div></div>
-        <div class="frow"><div class="fico">👤</div><div class="flbl">ผู้ดูแลหลัก</div><div style="font-size:12px;font-weight:500;color:var(--charcoal)">สามี + ลูกสาว (ห่าง)</div></div>
-        <div class="frow"><div class="fico">🏠</div><div class="flbl">อันตรายในบ้าน</div><div class="flag-y">มีสิ่งกีดขวาง</div></div>
-        <div class="frow"><div class="fico">🚗</div><div class="flbl">เดินทางลำบาก</div><div class="flag-y">มี</div></div>
+      <div class="talk-item">
+        <div class="talk-num">1</div>
+        <div class="talk-body">
+          <div class="talk-script">แม่ครับ แกงเขียวหวานวันอาทิตย์ ใส่อะไรบ้าง สูตรเดิมเปล่า</div>
+          <div class="talk-why">แม่ภูมิใจมากตอนเล่า พ่อชมว่าอร่อยสุดในรอบปี</div>
+        </div>
       </div>
-      <div>
-        <div class="frow"><div class="fico">💵</div><div class="flbl">ปัญหาการเงิน</div><div class="flag-n">ไม่มี</div></div>
-        <div class="frow"><div class="fico">🛡️</div><div class="flbl">เสี่ยงถูกหลอก</div><div class="flag-n">ไม่มี</div></div>
-        <div class="frow"><div class="fico">📋</div><div class="flbl">หนังสือเจตนา</div><div class="flag-n">มีแล้ว</div></div>
-        <div class="frow"><div class="fico">🙏</div><div class="flbl">ศาสนา/วัฒนธรรม</div><div style="font-size:12px;font-weight:500">พุทธ · ทำบุญทุกวันพระ</div></div>
+ 
+      <div class="talk-item">
+        <div class="talk-num">2</div>
+        <div class="talk-body">
+          <div class="talk-script">เข่าวันนี้ดีขึ้นไหมครับ หมอนัดวันอังคารแล้วนะ</div>
+          <div class="talk-why">แม่บอกเราว่าดีขึ้นวันละนิด แต่ยังไม่กล้าบอกลูกว่าปวดมาก</div>
+        </div>
+      </div>
+ 
+      <div class="talk-item">
+        <div class="talk-num">3</div>
+        <div class="talk-body">
+          <div class="talk-script">ช่วงนี้งานยุ่งมากเลยครับ เล่าให้แม่ฟังเอาไหม</div>
+          <div class="talk-why">แม่พูดถึงลูก 4 ครั้งใน 3 สาย อยากรู้เรื่องงานลูก</div>
+        </div>
       </div>
     </div>
-    <div class="note-box note-amber" style="margin-top:12px">
-      <strong>🏠 home_safety_notes:</strong> มีพรมเช็ดเท้าที่บันไดลื่นไม่มีราวจับ — <em>แจ้งไว้ตั้งแต่การเยี่ยมบ้านครั้งที่แล้ว ยังไม่ได้แก้ไข</em>
+ 
+    <!-- ═══════════════════════════════════════════
+         ④ TREND STRIP
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">04</span>
+      <span class="sec-title">เปลี่ยนจากสัปดาห์ก่อน</span>
+      <span class="sec-line"></span>
     </div>
-  </div>
+    <div class="trend-strip">
+      <div class="trend-chip up">
+        <div class="trend-lbl">💤 การนอน</div>
+        <div class="trend-val">
+          <span class="trend-arrow up">↑</span>
+          <span class="trend-num">+30</span>
+          <span class="trend-unit">นาที/คืน</span>
+        </div>
+      </div>
+      <div class="trend-chip down">
+        <div class="trend-lbl">🦶 ก้าวเดิน</div>
+        <div class="trend-val">
+          <span class="trend-arrow down">↓</span>
+          <span class="trend-num">-8%</span>
+          <span class="trend-unit">vs wk14</span>
+        </div>
+      </div>
+      <div class="trend-chip flat">
+        <div class="trend-lbl">😊 อารมณ์</div>
+        <div class="trend-val">
+          <span class="trend-arrow flat">→</span>
+          <span class="trend-num">เท่าเดิม</span>
+        </div>
+      </div>
+      <div class="trend-chip new">
+        <div class="trend-lbl">🔥 ปวดเข่า</div>
+        <div class="trend-val">
+          <span class="trend-arrow new">●</span>
+          <span class="trend-num">ใหม่</span>
+          <span class="trend-unit">NRS 4</span>
+        </div>
+      </div>
+      <div class="trend-chip flat">
+        <div class="trend-lbl">⚖️ น้ำหนัก</div>
+        <div class="trend-val">
+          <span class="trend-arrow flat">→</span>
+          <span class="trend-num">62</span>
+          <span class="trend-unit">กก.</span>
+        </div>
+      </div>
+      <div class="trend-chip up">
+        <div class="trend-lbl">🏠 ออกจากบ้าน</div>
+        <div class="trend-val">
+          <span class="trend-arrow up">↑</span>
+          <span class="trend-num">4</span>
+          <span class="trend-unit">ครั้ง (+1)</span>
+        </div>
+      </div>
+    </div>
  
-  <div class="footnote">
-    <svg width="20" height="20" viewBox="0 0 56 56" fill="none" style="vertical-align:middle;margin-right:6px;opacity:.4">
-      <circle cx="21" cy="28" r="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="35" cy="28" r="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M28 20 C28 20 24.5 24 24.5 28 C24.5 31 26 33 28 34 C30 33 31.5 31 31.5 28 C31.5 24 28 20 28 20Z" fill="currentColor" opacity="0.5"/>
-    </svg>
-    Kindred Weekly Report &nbsp;·&nbsp; 7–13 เมษายน 2569<br>
-    ข้อมูลส่วนใหญ่ได้จากการสัมภาษณ์ทางโทรศัพท์โดยเพื่อนสูงวัยที่ผ่านการอบรม<br>
-    รายงานนี้ใช้เพื่อประกอบการตัดสินใจของครอบครัวเท่านั้น ไม่ใช่การวินิจฉัยทางการแพทย์
-  </div>
+    <!-- ═══════════════════════════════════════════
+         ⑤ ข่าวดีสัปดาห์นี้
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">05</span>
+      <span class="sec-title">ข่าวดีที่คุณอาจมองข้าม</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="relief-card">
+      <div class="relief-head">
+        <div class="ico">🌿</div>
+        <h3>5 เรื่องดีที่เกิดขึ้นสัปดาห์นี้</h3>
+      </div>
+      <div class="relief-intro">"ไม่มีข่าวร้าย" ≠ "ไม่มีอะไรเกิดขึ้น" — นี่คือสิ่งที่แม่ทำได้ที่ลูกอาจไม่ได้สังเกต</div>
  
+      <div class="relief-item">
+        <div class="relief-check">✓</div>
+        <div>ไม่ล้มสัปดาห์นี้ <span class="streak">3 สัปดาห์ติดต่อกัน</span></div>
+      </div>
+      <div class="relief-item">
+        <div class="relief-check">✓</div>
+        <div>ADL ทำได้ครบทุกข้อ — อาบน้ำ แต่งตัว ทานอาหารเอง</div>
+      </div>
+      <div class="relief-item">
+        <div class="relief-check">✓</div>
+        <div>ทำอาหารเองทุกมื้อ — รวมแกงเขียวหวานเมนูโปรดพ่อ</div>
+      </div>
+      <div class="relief-item">
+        <div class="relief-check">✓</div>
+        <div>ไปวัดป่าแดงทำบุญวันพระได้ตามปกติ</div>
+      </div>
+      <div class="relief-item">
+        <div class="relief-check">✓</div>
+        <div>ความจำและการรับรู้ยังอยู่ baseline <span class="streak">ปกติ</span></div>
+      </div>
+    </div>
+ 
+    <!-- ═══════════════════════════════════════════
+         ⑥ สิ่งที่ควรรู้ (alerts)
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">06</span>
+      <span class="sec-title">สิ่งที่ควรรู้</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="alerts">
+      <div class="alert terra">
+        <div class="aico">❤️</div>
+        <div class="alert-body">
+          <div class="alert-title">ความดันสูงกว่าปกติ 2 ใน 3 วัน</div>
+          <div class="alert-desc">สูงสุด 156/94 · ขอเตรียมแจ้งหมอวันนัด 22 เม.ย.</div>
+        </div>
+      </div>
+      <div class="alert amber">
+        <div class="aico">💊</div>
+        <div class="alert-body">
+          <div class="alert-title">ลืมกินยาเบาหวาน 2 ครั้ง</div>
+          <div class="alert-desc">Metformin มื้อเช้า — แม่สับสนมื้อเช้ากับเที่ยง · ลองตั้งนาฬิกาให้</div>
+        </div>
+      </div>
+      <div class="alert amber">
+        <div class="aico">😔</div>
+        <div class="alert-body">
+          <div class="alert-title">อารมณ์เหนื่อยใจเล็กน้อย</div>
+          <div class="alert-desc">PHQ-2 = 3 · เพิ่มจาก 1 สัปดาห์ก่อน · อาจเป็นเพราะปวดเข่า</div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══════════════════════════════════════════
+         ⑦ สัปดาห์หน้าของแม่
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">07</span>
+      <span class="sec-title">สัปดาห์หน้าของแม่</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="forward-card">
+      <div class="forward-head">
+        <div class="ico">📅</div>
+        <h3>14–20 เมษายน 2569</h3>
+      </div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot priority"></div>
+          <div class="tl-body">
+            <div class="tl-date">อังคาร · 22 เม.ย.</div>
+            <div class="tl-title">นัดหมอ รพ.ศรีสงคราม</div>
+            <div class="tl-note">เตรียมผลความดัน 3 ค่า + ถามเรื่องปวดเข่า + ขอยา Metformin refill</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot green"></div>
+          <div class="tl-body">
+            <div class="tl-date">พุธ · 23 เม.ย.</div>
+            <div class="tl-title">วันพระ · แม่จะไปวัดป่าแดง</div>
+            <div class="tl-note">แม่ทำอาหารใส่บาตรทุกวันพระ · อาจโทรช่วงเช้าก่อนแม่ไปวัด</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-date">ศุกร์ · 25 เม.ย.</div>
+            <div class="tl-title">ยา Metformin หมด</div>
+            <div class="tl-note">แม่บอกว่า "รอลูกพาไป ไม่มีรถ" — ต้องจัดให้ก่อน</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot faint"></div>
+          <div class="tl-body">
+            <div class="tl-date">อาทิตย์ · 27 เม.ย.</div>
+            <div class="tl-title">วันเกิดป้าสมคิด (เพื่อนบ้าน)</div>
+            <div class="tl-note">แม่พูดถึงป้าสมคิดบ่อย · ถ้าส่งดอกไม้ไปแทน แม่จะดีใจ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══════════════════════════════════════════
+         ⑧ ภาพรวม (score rings with deltas)
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">08</span>
+      <span class="sec-title">ภาพรวมสัปดาห์</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="rings-card">
+      <div class="rings-grid">
+        <div class="ring-item">
+          <svg class="ring-svg" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#EBEBEB" stroke-width="5"/>
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#E8895A" stroke-width="5"
+              stroke-dasharray="97 41" stroke-dashoffset="34" stroke-linecap="round"/>
+            <text x="28" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#E8895A" font-family="Prompt,sans-serif">70</text>
+          </svg>
+          <div class="ring-info">
+            <div class="ring-name">สุขภาพกาย</div>
+            <div class="ring-status" style="color:var(--amber-deep)">พอใช้ <span class="ring-delta down">-3</span></div>
+          </div>
+        </div>
+ 
+        <div class="ring-item">
+          <svg class="ring-svg" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#EBEBEB" stroke-width="5"/>
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#52A573" stroke-width="5"
+              stroke-dasharray="113 25" stroke-dashoffset="34" stroke-linecap="round"/>
+            <text x="28" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#52A573" font-family="Prompt,sans-serif">82</text>
+          </svg>
+          <div class="ring-info">
+            <div class="ring-name">ความปลอดภัย</div>
+            <div class="ring-status" style="color:var(--green-deep)">ดี <span class="ring-delta up">+5</span></div>
+          </div>
+        </div>
+ 
+        <div class="ring-item">
+          <svg class="ring-svg" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#EBEBEB" stroke-width="5"/>
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#C9624A" stroke-width="5"
+              stroke-dasharray="65 73" stroke-dashoffset="34" stroke-linecap="round"/>
+            <text x="28" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#C9624A" font-family="Prompt,sans-serif">47</text>
+          </svg>
+          <div class="ring-info">
+            <div class="ring-name">สุขภาพจิต</div>
+            <div class="ring-status" style="color:var(--terra)">ดูแล <span class="ring-delta down">-8</span></div>
+          </div>
+        </div>
+ 
+        <div class="ring-item">
+          <svg class="ring-svg" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#EBEBEB" stroke-width="5"/>
+            <circle cx="28" cy="28" r="22" fill="none" stroke="#74BC90" stroke-width="5"
+              stroke-dasharray="103 35" stroke-dashoffset="34" stroke-linecap="round"/>
+            <text x="28" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#52A573" font-family="Prompt,sans-serif">75</text>
+          </svg>
+          <div class="ring-info">
+            <div class="ring-name">ดูแลตัวเอง</div>
+            <div class="ring-status" style="color:var(--green-deep)">ดี <span class="ring-delta">=</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- ═══════════════════════════════════════════
+         VITALS mini
+    ═══════════════════════════════════════════ -->
+    <div class="sec">
+      <span class="sec-num">09</span>
+      <span class="sec-title">ตัวเลขสำคัญ</span>
+      <span class="sec-line"></span>
+    </div>
+    <div class="vitals-mini">
+      <div class="v-row">
+        <div class="v-ico" style="background:var(--terra-wash)">❤️</div>
+        <div class="v-lbl">ความดัน (สูงสุด)</div>
+        <div class="v-val" style="color:var(--terra)">156/94</div>
+        <div class="v-trend down">↑ +8</div>
+      </div>
+      <div class="v-row">
+        <div class="v-ico" style="background:var(--green-wash)">🦶</div>
+        <div class="v-lbl">ก้าวเฉลี่ย/วัน</div>
+        <div class="v-val" style="color:var(--amber-deep)">3,357</div>
+        <div class="v-trend down">↓ -8%</div>
+      </div>
+      <div class="v-row">
+        <div class="v-ico" style="background:var(--amber-wash)">⚖️</div>
+        <div class="v-lbl">น้ำหนัก</div>
+        <div class="v-val">62 กก.</div>
+        <div class="v-trend flat">→</div>
+      </div>
+      <div class="v-row">
+        <div class="v-ico" style="background:var(--green-wash)">💊</div>
+        <div class="v-lbl">กินยาครบ</div>
+        <div class="v-val" style="color:var(--amber-deep)">79%</div>
+        <div class="v-trend down">↓ -12%</div>
+      </div>
+      <div class="v-row">
+        <div class="v-ico" style="background:var(--amber-wash)">😊</div>
+        <div class="v-lbl">PHQ-9</div>
+        <div class="v-val" style="color:var(--amber-deep)">8/27</div>
+        <div class="v-trend down">↑ +2</div>
+      </div>
+      <div class="v-row">
+        <div class="v-ico" style="background:var(--mint-wash)">🧠</div>
+        <div class="v-lbl">ความจำ (recall 3)</div>
+        <div class="v-val">2/3</div>
+        <div class="v-trend flat">→</div>
+      </div>
+    </div>
+ 
+    <!-- ═══════════════════════════════════════════
+         CTA — open full clinical dashboard
+    ═══════════════════════════════════════════ -->
+    <a href="#" class="cta">
+      <div class="cta-ico">📊</div>
+      <div class="cta-body">
+        <div class="cta-title">ดูข้อมูลละเอียด</div>
+        <div class="cta-sub">ADL · ยา · โภชนาการ · Call log · ส่งหมอ</div>
+      </div>
+      <div class="cta-arrow">→</div>
+    </a>
+ 
+    <!-- ═══════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════ -->
+    <div class="footnote">
+      <div class="footnote-logo">
+        <svg width="18" height="18" viewBox="0 0 56 56" fill="none">
+          <circle cx="21" cy="28" r="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <circle cx="35" cy="28" r="15" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M28 20 C28 20 24.5 24 24.5 28 C24.5 31 26 33 28 34 C30 33 31.5 31 31.5 28 C31.5 24 28 20 28 20Z" fill="currentColor" opacity="0.5"/>
+        </svg>
+        <span style="font-weight:600">Kindred</span>
+      </div>
+      Weekly Report · สัปดาห์ 15 / 2569<br>
+      ข้อมูลจากการสัมภาษณ์โดยเพื่อนสูงวัยที่ผ่านการอบรม<br>
+      ใช้ประกอบการตัดสินใจเท่านั้น · ไม่ใช่การวินิจฉัยทางการแพทย์
+    </div>
+ 
+  </div>
 </div>
  
-<script>
-// BP Chart
-new Chart(document.getElementById('bpChart'), {
-  type: 'line',
-  data: {
-    labels: ['จ.', '— ', 'พ.', '—', 'ศ.', '—', '—'],
-    datasets: [
-      { label: 'Systolic', data: [144, null, 156, null, 148, null, null],
-        borderColor: '#C9624A', borderWidth: 2.5, tension: 0.4,
-        pointRadius: [5,0,5,0,5,0,0], spanGaps: false, fill: false,
-        pointBackgroundColor: '#C9624A' },
-      { label: 'Diastolic', data: [88, null, 94, null, 90, null, null],
-        borderColor: '#E8895A', borderWidth: 2, tension: 0.4,
-        pointRadius: [4,0,4,0,4,0,0], spanGaps: false, fill: false,
-        pointBackgroundColor: '#E8895A' },
-      { label: 'เป้า', data: [140,140,140,140,140,140,140],
-        borderColor: 'rgba(0,0,0,.1)', borderDash: [5,4], borderWidth: 1.5,
-        pointRadius: 0, fill: false }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false },
-      tooltip: { callbacks: { title: t => { const d=['จันทร์','—','พุธ','—','ศุกร์','—','—']; return d[t[0].dataIndex]; } } }
-    },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 10, family: 'Prompt' }, color: '#A0A098' } },
-      y: { min: 80, max: 170, ticks: { font: { size: 10 }, stepSize: 30, color: '#A0A098' }, grid: { color: '#F5F4F0' } }
-    }
-  }
-});
- 
-// Steps Chart
-new Chart(document.getElementById('stepsChart'), {
-  type: 'bar',
-  data: {
-    labels: ['จ','อ','พ','พฤ','ศ','ส','อา'],
-    datasets: [{
-      data: [3800, 4200, 1200, 3500, 3900, 4100, 2800],
-      backgroundColor: ctx => {
-        const v = ctx.raw;
-        return v >= 5000 ? 'rgba(82,165,115,0.75)' : v >= 3000 ? 'rgba(232,137,90,0.7)' : 'rgba(201,98,74,0.7)';
-      },
-      borderRadius: 6, borderSkipped: false,
-    },
-    { type: 'line', data: [5000,5000,5000,5000,5000,5000,5000],
-      borderColor: 'rgba(0,0,0,.12)', borderDash: [4,4], borderWidth: 1.5,
-      pointRadius: 0, fill: false }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 11, family: 'Prompt' }, color: '#A0A098' } },
-      y: { min: 0, max: 6000, ticks: { font: { size: 10 }, stepSize: 2000, color: '#A0A098' }, grid: { color: '#F5F4F0' } }
-    }
-  }
-});
-</script>
 </body>
 </html>
